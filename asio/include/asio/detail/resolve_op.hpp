@@ -21,14 +21,14 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 class resolve_op : public operation
 {
 public:
   // The error code to be passed to the completion handler.
-  asio::error_code ec_;
+  ASIO_LIBNS::error_code ec_;
 
 protected:
   resolve_op(func_type complete_func)

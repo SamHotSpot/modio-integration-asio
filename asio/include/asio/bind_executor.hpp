@@ -28,7 +28,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 // Helper to automatically define nested typedef result_type.

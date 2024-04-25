@@ -21,7 +21,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 // Helper class to determine whether or not the current thread is inside an

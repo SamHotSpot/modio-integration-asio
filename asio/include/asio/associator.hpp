@@ -19,7 +19,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// Used to generically specialise associators for a type.
 template <template <typename, typename> class Associator,

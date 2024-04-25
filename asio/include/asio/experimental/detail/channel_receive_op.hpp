@@ -25,7 +25,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace experimental {
 namespace detail {
 
@@ -64,7 +64,7 @@ public:
   {
     // Take ownership of the operation object.
     channel_receive_op* o(static_cast<channel_receive_op*>(base));
-    ptr p = { asio::detail::addressof(o->handler_), o, o };
+    ptr p = { ASIO_LIBNS::detail::addressof(o->handler_), o, o };
 
     ASIO_HANDLER_COMPLETION((*o));
 
@@ -84,7 +84,7 @@ public:
       Payload* payload = static_cast<Payload*>(v);
       channel_handler<Payload, Handler> handler(
           ASIO_MOVE_CAST(Payload)(*payload), o->handler_);
-      p.h = asio::detail::addressof(handler.handler_);
+      p.h = ASIO_LIBNS::detail::addressof(handler.handler_);
       p.reset();
       ASIO_HANDLER_INVOCATION_BEGIN(());
       w.complete(handler, handler.handler_);
@@ -92,8 +92,8 @@ public:
     }
     else
     {
-      asio::detail::binder0<Handler> handler(o->handler_);
-      p.h = asio::detail::addressof(handler.handler_);
+      ASIO_LIBNS::detail::binder0<Handler> handler(o->handler_);
+      p.h = ASIO_LIBNS::detail::addressof(handler.handler_);
       p.reset();
     }
   }

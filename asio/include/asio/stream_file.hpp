@@ -22,7 +22,7 @@
 
 #include "asio/basic_stream_file.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// Typedef for the typical usage of a stream-oriented file.
 typedef basic_stream_file<> stream_file;

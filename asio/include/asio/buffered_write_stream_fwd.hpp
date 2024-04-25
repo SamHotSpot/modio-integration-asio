@@ -15,7 +15,7 @@
 # pragma once
 #endif // defined(_MSC_VER) && (_MSC_VER >= 1200)
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 template <typename Stream>
 class buffered_write_stream;

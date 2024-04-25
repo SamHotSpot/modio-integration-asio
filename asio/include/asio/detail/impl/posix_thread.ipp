@@ -25,7 +25,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 posix_thread::~posix_thread()
@@ -60,9 +60,9 @@ void posix_thread::start_thread(func_base* arg)
   if (error != 0)
   {
     delete arg;
-    asio::error_code ec(error,
-        asio::error::get_system_category());
-    asio::detail::throw_error(ec, "thread");
+    ASIO_LIBNS::error_code ec(error,
+        ASIO_LIBNS::error::get_system_category());
+    ASIO_LIBNS::detail::throw_error(ec, "thread");
   }
 }
 

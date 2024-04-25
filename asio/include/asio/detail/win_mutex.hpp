@@ -25,14 +25,14 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 class win_mutex
   : private noncopyable
 {
 public:
-  typedef asio::detail::scoped_lock<win_mutex> scoped_lock;
+  typedef ASIO_LIBNS::detail::scoped_lock<win_mutex> scoped_lock;
 
   // Constructor.
   ASIO_DECL win_mutex();

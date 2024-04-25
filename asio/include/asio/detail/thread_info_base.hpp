@@ -30,7 +30,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 #ifndef ASIO_RECYCLING_ALLOCATOR_CACHE_SIZE

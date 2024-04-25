@@ -21,12 +21,12 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace ip {
 
 /// An entry produced by a resolver.
 /**
- * The asio::ip::basic_resolver_entry class template describes an entry
+ * The ASIO_LIBNS::ip::basic_resolver_entry class template describes an entry
  * as returned by a resolver.
  *
  * @par Thread Safety

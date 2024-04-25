@@ -26,7 +26,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace windows {
 
 /// Wraps a handler to create an OVERLAPPED object for use with overlapped I/O.
@@ -124,7 +124,7 @@ public:
   }
 
   /// Post completion notification for overlapped operation. Releases ownership.
-  void complete(const asio::error_code& ec,
+  void complete(const ASIO_LIBNS::error_code& ec,
       std::size_t bytes_transferred)
   {
     impl_.complete(ec, bytes_transferred);

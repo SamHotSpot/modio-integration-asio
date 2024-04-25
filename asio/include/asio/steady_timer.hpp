@@ -22,7 +22,7 @@
 #include "asio/basic_waitable_timer.hpp"
 #include "asio/detail/chrono.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// Typedef for a timer based on the steady clock.
 /**

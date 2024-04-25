@@ -37,7 +37,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 #if defined(GENERATING_DOCUMENTATION)
 
@@ -353,7 +353,7 @@ struct blocking_adaptation_t
 #endif // defined(ASIO_MSVC)
 #endif // !defined(__clang__)
   {
-    return asio::query(ex, disallowed_t());
+    return ASIO_LIBNS::query(ex, disallowed_t());
   }
 
   template <typename Executor>
@@ -376,7 +376,7 @@ struct blocking_adaptation_t
 #endif // defined(ASIO_MSVC)
 #endif // !defined(__clang__)
   {
-    return asio::query(ex, allowed_t());
+    return ASIO_LIBNS::query(ex, allowed_t());
   }
 
   ASIO_STATIC_CONSTEXPR_DEFAULT_INIT(disallowed_t, disallowed);
@@ -563,7 +563,7 @@ public:
     ASIO_NOEXCEPT_IF((
       is_nothrow_query<const Executor&, Property>::value))
   {
-    return asio::query(executor_, p);
+    return ASIO_LIBNS::query(executor_, p);
   }
 
   template <int I>
@@ -584,7 +584,7 @@ public:
   {
     return adapter<typename decay<
       typename require_result<const Executor&, Property>::type
-        >::type>(0, asio::require(executor_, p));
+        >::type>(0, ASIO_LIBNS::require(executor_, p));
   }
 
   template <typename Property>
@@ -599,7 +599,7 @@ public:
   {
     return adapter<typename decay<
       typename prefer_result<const Executor&, Property>::type
-        >::type>(0, asio::prefer(executor_, p));
+        >::type>(0, ASIO_LIBNS::prefer(executor_, p));
   }
 
   template <typename Function>
@@ -733,7 +733,7 @@ public:
   {
     handler h = { this };
     execution::execute(ASIO_MOVE_CAST(Executor)(ex), h);
-    asio::detail::mutex::scoped_lock lock(mutex_);
+    ASIO_LIBNS::detail::mutex::scoped_lock lock(mutex_);
     while (!is_complete_)
       event_.wait(lock);
   }
@@ -742,7 +742,7 @@ public:
   {
     ~cleanup()
     {
-      asio::detail::mutex::scoped_lock lock(state_->mutex_);
+      ASIO_LIBNS::detail::mutex::scoped_lock lock(state_->mutex_);
       state_->is_complete_ = true;
       state_->event_.unlock_and_signal_one_for_destruction(lock);
     }
@@ -762,8 +762,8 @@ public:
   };
 
   Function func_;
-  asio::detail::mutex mutex_;
-  asio::detail::event event_;
+  ASIO_LIBNS::detail::mutex mutex_;
+  ASIO_LIBNS::detail::event event_;
   bool is_complete_;
 };
 

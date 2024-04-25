@@ -23,7 +23,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 asio_handler_allocate_is_deprecated
 asio_handler_allocate(std::size_t size, ...)

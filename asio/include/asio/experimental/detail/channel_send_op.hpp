@@ -25,7 +25,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace experimental {
 namespace detail {
 
@@ -84,7 +84,7 @@ public:
   {
     // Take ownership of the operation object.
     channel_send_op* o(static_cast<channel_send_op*>(base));
-    ptr p = { asio::detail::addressof(o->handler_), o, o };
+    ptr p = { ASIO_LIBNS::detail::addressof(o->handler_), o, o };
 
     ASIO_HANDLER_COMPLETION((*o));
 
@@ -93,7 +93,7 @@ public:
         ASIO_MOVE_CAST2(channel_operation::handler_work<
           Handler, IoExecutor>)(o->work_));
 
-    asio::error_code ec;
+    ASIO_LIBNS::error_code ec;
     switch (a)
     {
     case channel_operation::cancel_op:
@@ -112,9 +112,9 @@ public:
     // with the handler. Consequently, a local copy of the handler is required
     // to ensure that any owning sub-object remains valid until after we have
     // deallocated the memory here.
-    asio::detail::binder1<Handler, asio::error_code>
+    ASIO_LIBNS::detail::binder1<Handler, ASIO_LIBNS::error_code>
       handler(o->handler_, ec);
-    p.h = asio::detail::addressof(handler.handler_);
+    p.h = ASIO_LIBNS::detail::addressof(handler.handler_);
     p.reset();
 
     // Post the completion if required.

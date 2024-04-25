@@ -18,7 +18,7 @@
 #include "asio/detail/config.hpp"
 #include <cstddef>
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 #if defined(ASIO_HAS_NULLPTR)
 using std::nullptr_t;

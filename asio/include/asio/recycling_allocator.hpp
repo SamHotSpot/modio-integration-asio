@@ -20,7 +20,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// An allocator that caches memory blocks in thread-local storage for reuse.
 /**

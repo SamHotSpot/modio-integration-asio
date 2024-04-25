@@ -18,7 +18,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 inline serial_port_base::baud_rate::baud_rate(unsigned int rate)
   : value_(rate)

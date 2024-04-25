@@ -21,7 +21,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 class thread_group
@@ -83,7 +83,7 @@ private:
     {
     }
 
-    asio::detail::thread thread_;
+    ASIO_LIBNS::detail::thread thread_;
     item* next_;
   };
 

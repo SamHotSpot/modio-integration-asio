@@ -21,11 +21,11 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// A simple abstraction for starting threads.
 /**
- * The asio::thread class implements the smallest possible subset of the
+ * The ASIO_LIBNS::thread class implements the smallest possible subset of the
  * functionality of boost::thread. It is intended to be used only for starting
  * a thread and waiting for it to exit. If more extensive threading
  * capabilities are required, you are strongly advised to use something else.
@@ -35,13 +35,13 @@ namespace asio {
  * @e Shared @e objects: Unsafe.
  *
  * @par Example
- * A typical use of asio::thread would be to launch a thread to run an
+ * A typical use of ASIO_LIBNS::thread would be to launch a thread to run an
  * io_context's event processing loop:
  *
  * @par
- * @code asio::io_context io_context;
+ * @code ASIO_LIBNS::io_context io_context;
  * // ...
- * asio::thread t(boost::bind(&asio::io_context::run, &io_context));
+ * ASIO_LIBNS::thread t(boost::bind(&ASIO_LIBNS::io_context::run, &io_context));
  * // ...
  * t.join(); @endcode
  */

@@ -27,7 +27,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 DWORD WINAPI winapp_thread_function(LPVOID arg);
@@ -47,9 +47,9 @@ public:
     if (!thread_)
     {
       DWORD last_error = ::GetLastError();
-      asio::error_code ec(last_error,
-          asio::error::get_system_category());
-      asio::detail::throw_error(ec, "thread");
+      ASIO_LIBNS::error_code ec(last_error,
+          ASIO_LIBNS::error::get_system_category());
+      ASIO_LIBNS::detail::throw_error(ec, "thread");
     }
     arg.release();
   }

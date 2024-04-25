@@ -24,7 +24,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 #if !defined(ASIO_EXECUTOR_WORK_GUARD_DECL)
 #define ASIO_EXECUTOR_WORK_GUARD_DECL
@@ -168,7 +168,7 @@ public:
     : executor_(e),
       owns_(true)
   {
-    new (&work_) work_type(asio::prefer(executor_,
+    new (&work_) work_type(ASIO_LIBNS::prefer(executor_,
           execution::outstanding_work.tracked));
   }
 
@@ -178,7 +178,7 @@ public:
   {
     if (owns_)
     {
-      new (&work_) work_type(asio::prefer(executor_,
+      new (&work_) work_type(ASIO_LIBNS::prefer(executor_,
             execution::outstanding_work.tracked));
     }
   }

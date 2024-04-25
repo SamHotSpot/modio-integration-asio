@@ -20,7 +20,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 class mutable_buffer;
 class const_buffer;
@@ -63,7 +63,7 @@ char buffer_sequence_begin_helper(...);
 template <typename T>
 char (&buffer_sequence_begin_helper(T* t,
     typename enable_if<!is_same<
-      decltype(asio::buffer_sequence_begin(*t)),
+      decltype(ASIO_LIBNS::buffer_sequence_begin(*t)),
         void>::value>::type*))[2];
 
 #else // defined(ASIO_HAS_DECLTYPE)
@@ -87,7 +87,7 @@ char buffer_sequence_end_helper(...);
 template <typename T>
 char (&buffer_sequence_end_helper(T* t,
     typename enable_if<!is_same<
-      decltype(asio::buffer_sequence_end(*t)),
+      decltype(ASIO_LIBNS::buffer_sequence_end(*t)),
         void>::value>::type*))[2];
 
 #else // defined(ASIO_HAS_DECLTYPE)
@@ -192,7 +192,7 @@ char (&buffer_sequence_element_type_helper(...))[2];
 template <typename T, typename Buffer>
 char buffer_sequence_element_type_helper(T* t,
     typename enable_if<is_convertible<
-      decltype(*asio::buffer_sequence_begin(*t)),
+      decltype(*ASIO_LIBNS::buffer_sequence_begin(*t)),
         Buffer>::value>::type*);
 
 #else // defined(ASIO_HAS_DECLTYPE)

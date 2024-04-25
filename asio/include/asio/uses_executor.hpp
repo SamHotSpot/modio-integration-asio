@@ -20,7 +20,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// A special type, similar to std::nothrow_t, used to disambiguate
 /// constructors that accept executor arguments.
@@ -42,7 +42,7 @@ struct executor_arg_t
 /// A special value, similar to std::nothrow, used to disambiguate constructors
 /// that accept executor arguments.
 /**
- * See asio::executor_arg_t and asio::uses_executor
+ * See ASIO_LIBNS::executor_arg_t and ASIO_LIBNS::uses_executor
  * for more information.
  */
 #if defined(ASIO_HAS_CONSTEXPR) || defined(GENERATING_DOCUMENTATION)

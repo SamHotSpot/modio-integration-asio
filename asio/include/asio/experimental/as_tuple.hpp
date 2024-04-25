@@ -20,12 +20,12 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace experimental {
 
 #if !defined(ASIO_NO_DEPRECATED)
-using asio::as_tuple_t;
-using asio::as_tuple;
+using ASIO_LIBNS::as_tuple_t;
+using ASIO_LIBNS::as_tuple;
 #endif // !defined(ASIO_NO_DEPRECATED)
 
 } // namespace experimental

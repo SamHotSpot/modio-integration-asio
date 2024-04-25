@@ -21,7 +21,7 @@
 
 #include "asio/basic_streambuf.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// Typedef for the typical usage of basic_streambuf.
 typedef basic_streambuf<> streambuf;

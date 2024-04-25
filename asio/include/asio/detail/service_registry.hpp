@@ -24,7 +24,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 class io_context;
 
@@ -142,7 +142,7 @@ private:
       const execution_context::service::key& key) const;
 
   // Mutex to protect access to internal data.
-  mutable asio::detail::mutex mutex_;
+  mutable ASIO_LIBNS::detail::mutex mutex_;
 
   // The owner of this service registry and the services it contains.
   execution_context& owner_;

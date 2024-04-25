@@ -22,7 +22,7 @@
 
 #include "asio/basic_random_access_file.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// Typedef for the typical usage of a random-access file.
 typedef basic_random_access_file<> random_access_file;

@@ -24,7 +24,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 // Mutex adapter used to conditionally enable or disable locking.
@@ -109,7 +109,7 @@ public:
   }
 
 private:
-  asio::detail::event event_;
+  ASIO_LIBNS::detail::event event_;
 };
 
 } // namespace detail

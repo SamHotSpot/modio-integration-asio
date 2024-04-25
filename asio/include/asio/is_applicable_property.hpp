@@ -18,7 +18,7 @@
 #include "asio/detail/config.hpp"
 #include "asio/detail/type_traits.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 template <typename T, typename Property, typename = void>

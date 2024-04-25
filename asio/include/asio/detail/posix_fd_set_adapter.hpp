@@ -28,7 +28,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 // Adapts the FD_SET type to meet the Descriptor_Set concept's requirements.
@@ -68,7 +68,7 @@ public:
       reactor_op_queue<socket_type>::iterator op_iter = i++;
       if (!set(op_iter->first))
       {
-        asio::error_code ec(error::fd_set_failure);
+        ASIO_LIBNS::error_code ec(error::fd_set_failure);
         operations.cancel_operations(op_iter, ops, ec);
       }
     }

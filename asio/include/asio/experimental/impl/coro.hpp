@@ -20,7 +20,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace experimental {
 
 template <typename Yield, typename Return, typename Executor>
@@ -90,26 +90,26 @@ template <typename T>
 struct coro_error;
 
 template <>
-struct coro_error<asio::error_code>
+struct coro_error<ASIO_LIBNS::error_code>
 {
-  static asio::error_code invalid()
+  static ASIO_LIBNS::error_code invalid()
   {
-    return asio::error::fault;
+    return ASIO_LIBNS::error::fault;
   }
 
-  static asio::error_code cancelled()
+  static ASIO_LIBNS::error_code cancelled()
   {
-    return asio::error::operation_aborted;
+    return ASIO_LIBNS::error::operation_aborted;
   }
 
-  static asio::error_code interrupted()
+  static ASIO_LIBNS::error_code interrupted()
   {
-    return asio::error::interrupted;
+    return ASIO_LIBNS::error::interrupted;
   }
 
-  static asio::error_code done()
+  static ASIO_LIBNS::error_code done()
   {
-    return asio::error::broken_pipe;
+    return ASIO_LIBNS::error::broken_pipe;
   }
 };
 
@@ -119,29 +119,29 @@ struct coro_error<std::exception_ptr>
   static std::exception_ptr invalid()
   {
     return std::make_exception_ptr(
-        asio::system_error(
-          coro_error<asio::error_code>::invalid()));
+        ASIO_LIBNS::system_error(
+          coro_error<ASIO_LIBNS::error_code>::invalid()));
   }
 
   static std::exception_ptr cancelled()
   {
     return std::make_exception_ptr(
-        asio::system_error(
-          coro_error<asio::error_code>::cancelled()));
+        ASIO_LIBNS::system_error(
+          coro_error<ASIO_LIBNS::error_code>::cancelled()));
   }
 
   static std::exception_ptr interrupted()
   {
     return std::make_exception_ptr(
-        asio::system_error(
-          coro_error<asio::error_code>::interrupted()));
+        ASIO_LIBNS::system_error(
+          coro_error<ASIO_LIBNS::error_code>::interrupted()));
   }
 
   static std::exception_ptr done()
   {
     return std::make_exception_ptr(
-        asio::system_error(
-          coro_error<asio::error_code>::done()));
+        ASIO_LIBNS::system_error(
+          coro_error<ASIO_LIBNS::error_code>::done()));
   }
 };
 
@@ -170,8 +170,8 @@ struct coro_with_arg
         if ((hp.cancel->state.cancelled() != cancellation_type::none)
             && hp.cancel->throw_if_cancelled_)
         {
-          asio::detail::throw_error(
-              asio::error::operation_aborted, "coro-cancelled");
+          ASIO_LIBNS::detail::throw_error(
+              ASIO_LIBNS::error::operation_aborted, "coro-cancelled");
         }
       }
 
@@ -187,7 +187,7 @@ struct coro_with_arg
       {
         coro.coro_->awaited_from =
           dispatch_coroutine(
-              asio::prefer(hp.get_executor(),
+              ASIO_LIBNS::prefer(hp.get_executor(),
                 execution::outstanding_work.tracked),
                 [h]() mutable { h.resume(); });
 
@@ -212,7 +212,7 @@ struct coro_with_arg
 
           void operator()(cancellation_type ct)
           {
-            asio::dispatch(e, [ct, st = st]() mutable
+            ASIO_LIBNS::dispatch(e, [ct, st = st]() mutable
             {
               auto & [sig, state] = *st;
               sig.emit(ct);
@@ -678,7 +678,7 @@ struct coro_promise final :
   {
     struct exec_helper
     {
-      const asio::cancellation_state& value;
+      const ASIO_LIBNS::cancellation_state& value;
 
       constexpr static bool await_ready() noexcept
       {
@@ -689,7 +689,7 @@ struct coro_promise final :
       {
       }
 
-      asio::cancellation_state await_resume() const noexcept
+      ASIO_LIBNS::cancellation_state await_resume() const noexcept
       {
         return value;
       }
@@ -878,8 +878,8 @@ struct coro_promise final :
       if ((cancel->state.cancelled() != cancellation_type::none)
           && cancel->throw_if_cancelled_)
       {
-        asio::detail::throw_error(
-            asio::error::operation_aborted, "coro-cancelled");
+        ASIO_LIBNS::detail::throw_error(
+            ASIO_LIBNS::error::operation_aborted, "coro-cancelled");
       }
       return std::move(kr).as_throwing(cancel->state.slot());
     }
@@ -907,8 +907,8 @@ struct coro<Yield, Return, Executor>::awaitable_t
       if ((hp.cancel->state.cancelled() != cancellation_type::none)
           && hp.cancel->throw_if_cancelled_)
       {
-        asio::detail::throw_error(
-            asio::error::operation_aborted, "coro-cancelled");
+        ASIO_LIBNS::detail::throw_error(
+            ASIO_LIBNS::error::operation_aborted, "coro-cancelled");
       }
     }
 
@@ -923,7 +923,7 @@ struct coro<Yield, Return, Executor>::awaitable_t
     else
     {
       coro_.coro_->awaited_from = detail::dispatch_coroutine(
-          asio::prefer(hp.get_executor(),
+          ASIO_LIBNS::prefer(hp.get_executor(),
             execution::outstanding_work.tracked),
           [h]() mutable
           {
@@ -949,7 +949,7 @@ struct coro<Yield, Return, Executor>::awaitable_t
 
         void operator()(cancellation_type ct)
         {
-          asio::dispatch(e,
+          ASIO_LIBNS::dispatch(e,
               [ct, st = st]() mutable
               {
                 auto & [sig, state] = *st;
@@ -1054,7 +1054,7 @@ struct coro<Yield, Return, Executor>::initiate_async_resume
     {
       if (!coro)
       {
-        asio::post(exec,
+        ASIO_LIBNS::post(exec,
             [h = std::move(h)]() mutable
             {
               h(detail::coro_error<error_type>::invalid());
@@ -1065,7 +1065,7 @@ struct coro<Yield, Return, Executor>::initiate_async_resume
       auto ch = detail::coroutine_handle<promise_type>::from_promise(*coro);
       if (!ch)
       {
-        asio::post(exec,
+        ASIO_LIBNS::post(exec,
             [h = std::move(h)]() mutable
             {
               h(detail::coro_error<error_type>::invalid());
@@ -1073,7 +1073,7 @@ struct coro<Yield, Return, Executor>::initiate_async_resume
       }
       else if (ch.done())
       {
-        asio::post(exec,
+        ASIO_LIBNS::post(exec,
             [h = std::move(h)]() mutable
             {
               h(detail::coro_error<error_type>::done());
@@ -1104,7 +1104,7 @@ struct coro<Yield, Return, Executor>::initiate_async_resume
     {
       if (!coro)
       {
-        asio::post(exec,
+        ASIO_LIBNS::post(exec,
             [h = std::move(h)]() mutable
             {
               h(detail::coro_error<error_type>::invalid(), result_type{});
@@ -1116,7 +1116,7 @@ struct coro<Yield, Return, Executor>::initiate_async_resume
         detail::coroutine_handle<promise_type>::from_promise(*coro);
       if (!ch)
       {
-        asio::post(exec,
+        ASIO_LIBNS::post(exec,
             [h = std::move(h)]() mutable
             {
               h(detail::coro_error<error_type>::invalid(), result_type{});
@@ -1124,7 +1124,7 @@ struct coro<Yield, Return, Executor>::initiate_async_resume
       }
       else if (ch.done())
       {
-        asio::post(exec,
+        ASIO_LIBNS::post(exec,
             [h = std::move(h)]() mutable
             {
               h(detail::coro_error<error_type>::done(), result_type{});
@@ -1149,14 +1149,14 @@ struct coro<Yield, Return, Executor>::initiate_async_resume
   template <typename WaitHandler>
   void operator()(WaitHandler&& handler)
   {
-    const auto exec = asio::prefer(
+    const auto exec = ASIO_LIBNS::prefer(
         get_associated_executor(handler, get_executor()),
         execution::outstanding_work.tracked);
 
     coro_->cancel = &coro_->cancel_source.emplace();
     coro_->cancel->state = cancellation_state(
         coro_->cancel->slot = get_associated_cancellation_slot(handler));
-    asio::dispatch(get_executor(),
+    ASIO_LIBNS::dispatch(get_executor(),
         handle(exec, std::forward<WaitHandler>(handler),
           std::integral_constant<bool, is_noexcept>{},
           std::is_void<result_type>{}));
@@ -1165,14 +1165,14 @@ struct coro<Yield, Return, Executor>::initiate_async_resume
   template <typename WaitHandler, typename Input>
   void operator()(WaitHandler&& handler, Input&& input)
   {
-    const auto exec = asio::prefer(
+    const auto exec = ASIO_LIBNS::prefer(
         get_associated_executor(handler, get_executor()),
         execution::outstanding_work.tracked);
 
     coro_->cancel = &coro_->cancel_source.emplace();
     coro_->cancel->state = cancellation_state(
         coro_->cancel->slot = get_associated_cancellation_slot(handler));
-    asio::dispatch(get_executor(),
+    ASIO_LIBNS::dispatch(get_executor(),
         [h = handle(exec, std::forward<WaitHandler>(handler),
             std::integral_constant<bool, is_noexcept>{},
             std::is_void<result_type>{}),

@@ -23,7 +23,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 bad_executor::bad_executor() ASIO_NOEXCEPT
 {

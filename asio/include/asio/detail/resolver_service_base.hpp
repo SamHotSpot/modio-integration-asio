@@ -34,7 +34,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 class resolver_service_base
@@ -97,10 +97,10 @@ protected:
 #if !defined(ASIO_WINDOWS_RUNTIME)
   // Helper class to perform exception-safe cleanup of addrinfo objects.
   class auto_addrinfo
-    : private asio::detail::noncopyable
+    : private ASIO_LIBNS::detail::noncopyable
   {
   public:
-    explicit auto_addrinfo(asio::detail::addrinfo_type* ai)
+    explicit auto_addrinfo(ASIO_LIBNS::detail::addrinfo_type* ai)
       : ai_(ai)
     {
     }
@@ -111,13 +111,13 @@ protected:
         socket_ops::freeaddrinfo(ai_);
     }
 
-    operator asio::detail::addrinfo_type*()
+    operator ASIO_LIBNS::detail::addrinfo_type*()
     {
       return ai_;
     }
 
   private:
-    asio::detail::addrinfo_type* ai_;
+    ASIO_LIBNS::detail::addrinfo_type* ai_;
   };
 #endif // !defined(ASIO_WINDOWS_RUNTIME)
 
@@ -137,13 +137,13 @@ protected:
 
 private:
   // Mutex to protect access to internal data.
-  asio::detail::mutex mutex_;
+  ASIO_LIBNS::detail::mutex mutex_;
 
   // Private scheduler used for performing asynchronous host resolution.
-  asio::detail::scoped_ptr<scheduler_impl> work_scheduler_;
+  ASIO_LIBNS::detail::scoped_ptr<scheduler_impl> work_scheduler_;
 
   // Thread used for running the work io_context's run loop.
-  asio::detail::scoped_ptr<asio::detail::thread> work_thread_;
+  ASIO_LIBNS::detail::scoped_ptr<ASIO_LIBNS::detail::thread> work_thread_;
 };
 
 } // namespace detail

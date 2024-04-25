@@ -44,7 +44,7 @@
 # include "asio/detail/null_fenced_block.hpp"
 #endif
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 #if !defined(ASIO_HAS_THREADS) \

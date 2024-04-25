@@ -20,7 +20,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 template <typename TResult>
@@ -29,7 +29,7 @@ class winrt_async_op
 {
 public:
   // The error code to be passed to the completion handler.
-  asio::error_code ec_;
+  ASIO_LIBNS::error_code ec_;
 
   // The result of the operation, to be passed to the completion handler.
   TResult result_;
@@ -48,7 +48,7 @@ class winrt_async_op<void>
 {
 public:
   // The error code to be passed to the completion handler.
-  asio::error_code ec_;
+  ASIO_LIBNS::error_code ec_;
 
 protected:
   winrt_async_op(func_type complete_func)

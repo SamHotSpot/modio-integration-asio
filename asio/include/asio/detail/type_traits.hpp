@@ -48,7 +48,7 @@
 # include <boost/utility/result_of.hpp>
 #endif // defined(ASIO_HAS_STD_TYPE_TRAITS)
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 #if defined(ASIO_HAS_STD_TYPE_TRAITS)
 using std::add_const;

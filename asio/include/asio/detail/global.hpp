@@ -29,7 +29,7 @@
 # error Only Windows, POSIX and std::call_once are supported!
 #endif
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 template <typename T>

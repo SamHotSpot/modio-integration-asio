@@ -25,15 +25,15 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 win_mutex::win_mutex()
 {
   int error = do_init();
-  asio::error_code ec(error,
-      asio::error::get_system_category());
-  asio::detail::throw_error(ec, "mutex");
+  ASIO_LIBNS::error_code ec(error,
+      ASIO_LIBNS::error::get_system_category());
+  ASIO_LIBNS::detail::throw_error(ec, "mutex");
 }
 
 int win_mutex::do_init()

@@ -27,7 +27,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 class null_reactor
@@ -40,7 +40,7 @@ public:
   };
 
   // Constructor.
-  null_reactor(asio::execution_context& ctx)
+  null_reactor(ASIO_LIBNS::execution_context& ctx)
     : execution_context_service_base<null_reactor>(ctx)
   {
   }

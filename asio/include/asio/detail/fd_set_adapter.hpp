@@ -22,7 +22,7 @@
 #include "asio/detail/posix_fd_set_adapter.hpp"
 #include "asio/detail/win_fd_set_adapter.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 #if defined(ASIO_WINDOWS) || defined(__CYGWIN__)

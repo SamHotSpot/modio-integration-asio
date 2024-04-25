@@ -20,12 +20,12 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace experimental {
 
 #if !defined(ASIO_NO_DEPRECATED)
-using asio::append_t;
-using asio::append;
+using ASIO_LIBNS::append_t;
+using ASIO_LIBNS::append;
 #endif // !defined(ASIO_NO_DEPRECATED)
 
 } // namespace experimental

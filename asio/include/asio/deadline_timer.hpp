@@ -25,7 +25,7 @@
 
 #include <boost/date_time/posix_time/posix_time_types.hpp>
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// Typedef for the typical usage of timer. Uses a UTC clock.
 typedef basic_deadline_timer<boost::posix_time::ptime> deadline_timer;

@@ -29,7 +29,7 @@
 # error Only Windows, POSIX and std::mutex are supported!
 #endif
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 #if !defined(ASIO_HAS_THREADS)

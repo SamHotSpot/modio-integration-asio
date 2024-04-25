@@ -22,7 +22,7 @@
 
 #include "asio/posix/basic_descriptor.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace posix {
 
 /// Typedef for the typical usage of basic_descriptor.

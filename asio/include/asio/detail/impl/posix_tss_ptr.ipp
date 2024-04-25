@@ -25,15 +25,15 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 void posix_tss_ptr_create(pthread_key_t& key)
 {
   int error = ::pthread_key_create(&key, 0);
-  asio::error_code ec(error,
-      asio::error::get_system_category());
-  asio::detail::throw_error(ec, "tss");
+  ASIO_LIBNS::error_code ec(error,
+      ASIO_LIBNS::error::get_system_category());
+  ASIO_LIBNS::detail::throw_error(ec, "tss");
 }
 
 } // namespace detail

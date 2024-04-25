@@ -18,7 +18,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace experimental {
 
 template <typename Yield, typename Return, typename Executor>
@@ -185,12 +185,12 @@ struct coro_init_handler
 
     template <typename... Args>
     static auto resume_impl(
-        std::tuple<asio::error_code, Args...>&& tup)
+        std::tuple<ASIO_LIBNS::error_code, Args...>&& tup)
     {
       auto ec = get<0>(std::move(tup));
       if (ec)
-        asio::detail::throw_exception(
-            asio::system_error(ec, "error_code in use_coro"));
+        ASIO_LIBNS::detail::throw_exception(
+            ASIO_LIBNS::system_error(ec, "error_code in use_coro"));
 
       if constexpr (sizeof...(Args) == 0u)
         return;
@@ -212,11 +212,11 @@ struct coro_init_handler
     }
 
     static auto resume_impl(
-        std::tuple<asio::error_code>&& tup)
+        std::tuple<ASIO_LIBNS::error_code>&& tup)
     {
       auto ec = get<0>(std::move(tup));
       if (ec)
-        asio::detail::throw_error(ec, "error_code in use_coro");
+        ASIO_LIBNS::detail::throw_error(ec, "error_code in use_coro");
     }
 
     auto await_resume() const

@@ -20,7 +20,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 class signal_op
@@ -28,7 +28,7 @@ class signal_op
 {
 public:
   // The error code to be passed to the completion handler.
-  asio::error_code ec_;
+  ASIO_LIBNS::error_code ec_;
 
   // The operation key used for targeted cancellation.
   void* cancellation_key_;

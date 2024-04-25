@@ -16,7 +16,7 @@
 #include "asio/associated_allocator.hpp"
 #include "asio/dispatch.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 class any_io_executor;
 
@@ -163,7 +163,7 @@ struct completion_handler_erasure<Return(Args...), Executor>
     if (impl_)
     {
       Executor executor(impl_->executor);
-      asio::dispatch(executor,
+      ASIO_LIBNS::dispatch(executor,
           [impl = std::move(impl_)]() mutable
           {
             impl.reset();

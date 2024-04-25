@@ -27,7 +27,7 @@
 # error ASIO_HAS_STRING_VIEW is set but no string_view is available
 #endif // defined(ASIO_HAS_STD_EXPERIMENTAL_STRING_VIEW)
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 #if defined(ASIO_HAS_STD_STRING_VIEW)
 using std::basic_string_view;
@@ -39,7 +39,7 @@ using std::experimental::string_view;
 
 } // namespace asio
 
-# define ASIO_STRING_VIEW_PARAM asio::string_view
+# define ASIO_STRING_VIEW_PARAM ASIO_LIBNS::string_view
 #else // defined(ASIO_HAS_STRING_VIEW)
 # define ASIO_STRING_VIEW_PARAM const std::string&
 #endif // defined(ASIO_HAS_STRING_VIEW)

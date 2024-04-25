@@ -21,7 +21,7 @@
 #include <variant>
 #include "asio/any_io_executor.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace experimental {
 namespace detail {
 

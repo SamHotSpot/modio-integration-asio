@@ -46,7 +46,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 #if defined(NSIG) && (NSIG > 0)
@@ -131,7 +131,7 @@ public:
 
   // Perform fork-related housekeeping.
   ASIO_DECL void notify_fork(
-      asio::execution_context::fork_event fork_ev);
+      ASIO_LIBNS::execution_context::fork_event fork_ev);
 
   // Construct a new signal_set implementation.
   ASIO_DECL void construct(implementation_type& impl);
@@ -140,20 +140,20 @@ public:
   ASIO_DECL void destroy(implementation_type& impl);
 
   // Add a signal to a signal_set.
-  ASIO_DECL asio::error_code add(implementation_type& impl,
-      int signal_number, asio::error_code& ec);
+  ASIO_DECL ASIO_LIBNS::error_code add(implementation_type& impl,
+      int signal_number, ASIO_LIBNS::error_code& ec);
 
   // Remove a signal to a signal_set.
-  ASIO_DECL asio::error_code remove(implementation_type& impl,
-      int signal_number, asio::error_code& ec);
+  ASIO_DECL ASIO_LIBNS::error_code remove(implementation_type& impl,
+      int signal_number, ASIO_LIBNS::error_code& ec);
 
   // Remove all signals from a signal_set.
-  ASIO_DECL asio::error_code clear(implementation_type& impl,
-      asio::error_code& ec);
+  ASIO_DECL ASIO_LIBNS::error_code clear(implementation_type& impl,
+      ASIO_LIBNS::error_code& ec);
 
   // Cancel all operations associated with the signal set.
-  ASIO_DECL asio::error_code cancel(implementation_type& impl,
-      asio::error_code& ec);
+  ASIO_DECL ASIO_LIBNS::error_code cancel(implementation_type& impl,
+      ASIO_LIBNS::error_code& ec);
 
   // Cancel a specific operation associated with the signal set.
   ASIO_DECL void cancel_ops_by_key(implementation_type& impl,
@@ -165,11 +165,11 @@ public:
       Handler& handler, const IoExecutor& io_ex)
   {
     typename associated_cancellation_slot<Handler>::type slot
-      = asio::get_associated_cancellation_slot(handler);
+      = ASIO_LIBNS::get_associated_cancellation_slot(handler);
 
     // Allocate and construct an operation to wrap the handler.
     typedef signal_handler<Handler, IoExecutor> op;
-    typename op::ptr p = { asio::detail::addressof(handler),
+    typename op::ptr p = { ASIO_LIBNS::detail::addressof(handler),
       op::ptr::allocate(handler), 0 };
     p.p = new (p.v) op(handler, io_ex);
 

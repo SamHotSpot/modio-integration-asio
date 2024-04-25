@@ -26,7 +26,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// Completion token type used to specify that the completion handler
 /// arguments should be passed additional values after the results of the

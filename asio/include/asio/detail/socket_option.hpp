@@ -23,7 +23,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 namespace socket_option {
 
@@ -121,7 +121,7 @@ public:
     default:
       {
         std::length_error ex("boolean socket option resize");
-        asio::detail::throw_exception(ex);
+        ASIO_LIBNS::detail::throw_exception(ex);
       }
     }
   }
@@ -202,7 +202,7 @@ public:
     if (s != sizeof(value_))
     {
       std::length_error ex("integer socket option resize");
-      asio::detail::throw_exception(ex);
+      ASIO_LIBNS::detail::throw_exception(ex);
     }
   }
 
@@ -299,7 +299,7 @@ public:
     if (s != sizeof(value_))
     {
       std::length_error ex("linger socket option resize");
-      asio::detail::throw_exception(ex);
+      ASIO_LIBNS::detail::throw_exception(ex);
     }
   }
 

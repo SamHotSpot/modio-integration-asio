@@ -23,7 +23,7 @@
 # include <boost/array.hpp>
 #endif // defined(ASIO_HAS_STD_ARRAY)
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 #if defined(ASIO_HAS_STD_ARRAY)

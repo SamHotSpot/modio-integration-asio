@@ -21,7 +21,7 @@
 
 #include <memory>
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 template <typename Allocator = std::allocator<char> >
 class basic_streambuf;

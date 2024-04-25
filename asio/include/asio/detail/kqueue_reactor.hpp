@@ -45,7 +45,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 class scheduler;
@@ -84,7 +84,7 @@ public:
   typedef descriptor_state* per_descriptor_data;
 
   // Constructor.
-  ASIO_DECL kqueue_reactor(asio::execution_context& ctx);
+  ASIO_DECL kqueue_reactor(ASIO_LIBNS::execution_context& ctx);
 
   // Destructor.
   ASIO_DECL ~kqueue_reactor();
@@ -94,7 +94,7 @@ public:
 
   // Recreate internal descriptors following a fork.
   ASIO_DECL void notify_fork(
-      asio::execution_context::fork_event fork_ev);
+      ASIO_LIBNS::execution_context::fork_event fork_ev);
 
   // Initialise the task.
   ASIO_DECL void init_task();

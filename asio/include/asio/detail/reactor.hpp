@@ -34,7 +34,7 @@
 # include "asio/detail/select_reactor.hpp"
 #endif
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 #if defined(ASIO_HAS_IOCP) || defined(ASIO_WINDOWS_RUNTIME) || defined(ASIO_NULL_REACTOR)

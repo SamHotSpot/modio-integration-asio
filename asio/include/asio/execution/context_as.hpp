@@ -28,7 +28,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 #if defined(GENERATING_DOCUMENTATION)
 
@@ -134,7 +134,7 @@ struct context_as_t
 #endif // defined(ASIO_MSVC)
 #endif // !defined(__clang__)
   {
-    return asio::query(ex, context);
+    return ASIO_LIBNS::query(ex, context);
   }
 };
 

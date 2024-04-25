@@ -20,7 +20,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 struct system_context::thread_function
 {
@@ -32,7 +32,7 @@ struct system_context::thread_function
     try
     {
 #endif// !defined(ASIO_NO_EXCEPTIONS)
-      asio::error_code ec;
+      ASIO_LIBNS::error_code ec;
       scheduler_->run(ec);
 #if !defined(ASIO_NO_EXCEPTIONS)
     }
@@ -81,7 +81,7 @@ void system_context::join()
 detail::scheduler& system_context::add_scheduler(detail::scheduler* s)
 {
   detail::scoped_ptr<detail::scheduler> scoped_impl(s);
-  asio::add_service<detail::scheduler>(*this, scoped_impl.get());
+  ASIO_LIBNS::add_service<detail::scheduler>(*this, scoped_impl.get());
   return *scoped_impl.release();
 }
 

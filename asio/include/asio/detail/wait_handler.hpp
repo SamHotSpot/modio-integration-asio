@@ -25,7 +25,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 template <typename Handler, typename IoExecutor>
@@ -42,12 +42,12 @@ public:
   }
 
   static void do_complete(void* owner, operation* base,
-      const asio::error_code& /*ec*/,
+      const ASIO_LIBNS::error_code& /*ec*/,
       std::size_t /*bytes_transferred*/)
   {
     // Take ownership of the handler object.
     wait_handler* h(static_cast<wait_handler*>(base));
-    ptr p = { asio::detail::addressof(h->handler_), h, h };
+    ptr p = { ASIO_LIBNS::detail::addressof(h->handler_), h, h };
 
     ASIO_HANDLER_COMPLETION((*h));
 
@@ -62,9 +62,9 @@ public:
     // with the handler. Consequently, a local copy of the handler is required
     // to ensure that any owning sub-object remains valid until after we have
     // deallocated the memory here.
-    detail::binder1<Handler, asio::error_code>
+    detail::binder1<Handler, ASIO_LIBNS::error_code>
       handler(h->handler_, h->ec_);
-    p.h = asio::detail::addressof(handler.handler_);
+    p.h = ASIO_LIBNS::detail::addressof(handler.handler_);
     p.reset();
 
     // Make the upcall if required.

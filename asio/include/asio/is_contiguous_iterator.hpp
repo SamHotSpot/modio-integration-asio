@@ -21,7 +21,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// The is_contiguous_iterator class is a traits class that may be used to
 /// determine whether a type is a contiguous iterator.

@@ -35,7 +35,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 eventfd_select_interrupter::eventfd_select_interrupter()
@@ -85,9 +85,9 @@ void eventfd_select_interrupter::open_descriptors()
     }
     else
     {
-      asio::error_code ec(errno,
-          asio::error::get_system_category());
-      asio::detail::throw_error(ec, "eventfd_select_interrupter");
+      ASIO_LIBNS::error_code ec(errno,
+          ASIO_LIBNS::error::get_system_category());
+      ASIO_LIBNS::detail::throw_error(ec, "eventfd_select_interrupter");
     }
   }
 }

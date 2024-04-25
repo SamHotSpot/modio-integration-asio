@@ -19,7 +19,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 inline system_context::executor_type
 system_context::get_executor() ASIO_NOEXCEPT

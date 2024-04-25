@@ -26,15 +26,15 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 void win_static_mutex::init()
 {
   int error = do_init();
-  asio::error_code ec(error,
-      asio::error::get_system_category());
-  asio::detail::throw_error(ec, "static_mutex");
+  ASIO_LIBNS::error_code ec(error,
+      ASIO_LIBNS::error::get_system_category());
+  ASIO_LIBNS::detail::throw_error(ec, "static_mutex");
 }
 
 int win_static_mutex::do_init()

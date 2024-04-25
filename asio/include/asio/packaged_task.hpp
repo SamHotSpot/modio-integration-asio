@@ -27,7 +27,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 #if defined(ASIO_HAS_VARIADIC_TEMPLATES) \
   || defined(GENERATING_DOCUMENTATION)

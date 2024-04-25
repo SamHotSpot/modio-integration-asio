@@ -28,7 +28,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// Exception thrown when trying to access an empty polymorphic executor.
 class bad_executor
@@ -309,7 +309,7 @@ private:
     if (!impl_)
     {
       bad_executor ex;
-      asio::detail::throw_exception(ex);
+      ASIO_LIBNS::detail::throw_exception(ex);
     }
     return impl_;
   }
@@ -333,7 +333,7 @@ private:
 
 } // namespace asio
 
-ASIO_USES_ALLOCATOR(asio::executor)
+ASIO_USES_ALLOCATOR(ASIO_LIBNS::executor)
 
 #include "asio/detail/pop_options.hpp"
 

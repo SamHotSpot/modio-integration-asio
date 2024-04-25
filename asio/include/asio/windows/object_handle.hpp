@@ -23,7 +23,7 @@
 
 #include "asio/windows/basic_object_handle.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace windows {
 
 /// Typedef for the typical usage of an object handle.

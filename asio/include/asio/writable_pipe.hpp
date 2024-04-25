@@ -22,7 +22,7 @@
 
 #include "asio/basic_writable_pipe.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// Typedef for the typical usage of a writable pipe.
 typedef basic_writable_pipe<> writable_pipe;

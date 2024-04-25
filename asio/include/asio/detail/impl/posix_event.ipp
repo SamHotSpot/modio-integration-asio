@@ -25,7 +25,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 posix_event::posix_event()
@@ -48,9 +48,9 @@ posix_event::posix_event()
 #endif // (defined(__MACH__) && defined(__APPLE__))
        // || (defined(__ANDROID__) && (__ANDROID_API__ < 21))
 
-  asio::error_code ec(error,
-      asio::error::get_system_category());
-  asio::detail::throw_error(ec, "event");
+  ASIO_LIBNS::error_code ec(error,
+      ASIO_LIBNS::error::get_system_category());
+  ASIO_LIBNS::detail::throw_error(ec, "event");
 }
 
 } // namespace detail

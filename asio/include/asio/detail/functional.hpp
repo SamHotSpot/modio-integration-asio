@@ -23,7 +23,7 @@
 # include <boost/function.hpp>
 #endif // !defined(ASIO_HAS_STD_FUNCTION)
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 #if defined(ASIO_HAS_STD_FUNCTION)

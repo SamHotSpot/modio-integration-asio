@@ -18,7 +18,7 @@
 #include "asio/detail/config.hpp"
 #include "asio/basic_signal_set.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// Typedef for the typical usage of a signal set.
 typedef basic_signal_set<> signal_set;

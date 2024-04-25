@@ -17,7 +17,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 #if !defined(GENERATING_DOCUMENTATION)
 

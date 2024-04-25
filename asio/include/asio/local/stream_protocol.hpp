@@ -28,12 +28,12 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace local {
 
 /// Encapsulates the flags needed for stream-oriented UNIX sockets.
 /**
- * The asio::local::stream_protocol class contains flags necessary for
+ * The ASIO_LIBNS::local::stream_protocol class contains flags necessary for
  * stream-oriented UNIX domain sockets.
  *
  * @par Thread Safety

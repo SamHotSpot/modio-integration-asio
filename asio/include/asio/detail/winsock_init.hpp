@@ -21,7 +21,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 class winsock_init_base
@@ -81,7 +81,7 @@ public:
   //   #pragma warning(push)
   //   #pragma warning(disable:4073)
   //   #pragma init_seg(lib)
-  //   asio::detail::winsock_init<>::manual manual_winsock_init;
+  //   ASIO_LIBNS::detail::winsock_init<>::manual manual_winsock_init;
   //   #pragma warning(pop)
   class manual
   {

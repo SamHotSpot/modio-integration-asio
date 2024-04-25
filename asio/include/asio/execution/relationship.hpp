@@ -30,7 +30,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 #if defined(GENERATING_DOCUMENTATION)
 
@@ -344,7 +344,7 @@ struct relationship_t
 #endif // defined(ASIO_MSVC)
 #endif // !defined(__clang__)
   {
-    return asio::query(ex, fork_t());
+    return ASIO_LIBNS::query(ex, fork_t());
   }
 
   template <typename Executor>
@@ -367,7 +367,7 @@ struct relationship_t
 #endif // defined(ASIO_MSVC)
 #endif // !defined(__clang__)
   {
-    return asio::query(ex, continuation_t());
+    return ASIO_LIBNS::query(ex, continuation_t());
   }
 
   ASIO_STATIC_CONSTEXPR_DEFAULT_INIT(fork_t, fork);

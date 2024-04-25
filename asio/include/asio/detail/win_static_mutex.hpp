@@ -23,12 +23,12 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 struct win_static_mutex
 {
-  typedef asio::detail::scoped_lock<win_static_mutex> scoped_lock;
+  typedef ASIO_LIBNS::detail::scoped_lock<win_static_mutex> scoped_lock;
 
   // Initialise the mutex.
   ASIO_DECL void init();

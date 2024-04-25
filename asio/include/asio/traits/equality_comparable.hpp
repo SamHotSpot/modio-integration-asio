@@ -26,7 +26,7 @@
        //   && defined(ASIO_HAS_NOEXCEPT)
        //   && defined(ASIO_HAS_WORKING_EXPRESSION_SFINAE)
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace traits {
 
 template <typename T, typename = void>

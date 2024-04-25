@@ -30,7 +30,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// A @ref completion_token that represents the currently executing coroutine.
 /**
@@ -146,7 +146,7 @@ struct use_awaitable_t
 /// A @ref completion_token object that represents the currently executing
 /// coroutine.
 /**
- * See the documentation for asio::use_awaitable_t for a usage example.
+ * See the documentation for ASIO_LIBNS::use_awaitable_t for a usage example.
  */
 #if defined(GENERATING_DOCUMENTATION)
 constexpr use_awaitable_t<> use_awaitable;

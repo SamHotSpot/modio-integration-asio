@@ -21,7 +21,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
   // Class to adapt a detached_t as a completion handler.
@@ -66,7 +66,7 @@ namespace detail {
 template <typename Signature>
 struct async_result<detached_t, Signature>
 {
-  typedef asio::detail::detached_handler completion_handler_type;
+  typedef ASIO_LIBNS::detail::detached_handler completion_handler_type;
 
   typedef void return_type;
 

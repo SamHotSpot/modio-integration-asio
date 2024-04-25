@@ -23,7 +23,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 any_io_executor::any_io_executor() ASIO_NOEXCEPT
   : base_type()

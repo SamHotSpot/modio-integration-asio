@@ -26,12 +26,12 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace local {
 
 /// Encapsulates the flags needed for datagram-oriented UNIX sockets.
 /**
- * The asio::local::datagram_protocol class contains flags necessary for
+ * The ASIO_LIBNS::local::datagram_protocol class contains flags necessary for
  * datagram-oriented UNIX domain sockets.
  *
  * @par Thread Safety

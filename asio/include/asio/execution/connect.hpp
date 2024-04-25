@@ -31,7 +31,7 @@
 
 #if defined(GENERATING_DOCUMENTATION)
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace execution {
 
 /// A customisation point that connects a sender to a receiver.
@@ -132,20 +132,20 @@ using connect_result_t = typename connect_result<S, R>::type;
 
 namespace asio_execution_connect_fn {
 
-using asio::conditional;
-using asio::declval;
-using asio::enable_if;
-using asio::execution::detail::as_invocable;
-using asio::execution::detail::as_operation;
-using asio::execution::detail::is_as_receiver;
-using asio::execution::is_executor_of;
-using asio::execution::is_operation_state;
-using asio::execution::is_receiver;
-using asio::execution::is_sender;
-using asio::false_type;
-using asio::remove_cvref;
-using asio::traits::connect_free;
-using asio::traits::connect_member;
+using ASIO_LIBNS::conditional;
+using ASIO_LIBNS::declval;
+using ASIO_LIBNS::enable_if;
+using ASIO_LIBNS::execution::detail::as_invocable;
+using ASIO_LIBNS::execution::detail::as_operation;
+using ASIO_LIBNS::execution::detail::is_as_receiver;
+using ASIO_LIBNS::execution::is_executor_of;
+using ASIO_LIBNS::execution::is_operation_state;
+using ASIO_LIBNS::execution::is_receiver;
+using ASIO_LIBNS::execution::is_sender;
+using ASIO_LIBNS::false_type;
+using ASIO_LIBNS::remove_cvref;
+using ASIO_LIBNS::traits::connect_free;
+using ASIO_LIBNS::traits::connect_member;
 
 void connect();
 
@@ -426,7 +426,7 @@ template <typename T>
 const T static_instance<T>::instance = {};
 
 } // namespace asio_execution_connect_fn
-namespace asio {
+namespace ASIO_LIBNS {
 namespace execution {
 namespace {
 

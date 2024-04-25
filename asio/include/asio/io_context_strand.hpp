@@ -28,7 +28,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// Provides serialised handler execution.
 /**
@@ -102,9 +102,9 @@ public:
    * @param io_context The io_context object that the strand will use to
    * dispatch handlers that are ready to be run.
    */
-  explicit strand(asio::io_context& io_context)
-    : service_(asio::use_service<
-        asio::detail::strand_service>(io_context))
+  explicit strand(ASIO_LIBNS::io_context& io_context)
+    : service_(ASIO_LIBNS::use_service<
+        ASIO_LIBNS::detail::strand_service>(io_context))
   {
     service_.construct(impl_);
   }
@@ -121,7 +121,7 @@ public:
   }
 
   /// Obtain the underlying execution context.
-  asio::io_context& context() const ASIO_NOEXCEPT
+  ASIO_LIBNS::io_context& context() const ASIO_NOEXCEPT
   {
     return service_.get_io_context();
   }
@@ -168,7 +168,7 @@ public:
   }
 
 #if !defined(ASIO_NO_DEPRECATED)
-  /// (Deprecated: Use asio::dispatch().) Request the strand to invoke
+  /// (Deprecated: Use ASIO_LIBNS::dispatch().) Request the strand to invoke
   /// the given handler.
   /**
    * This function is used to ask the strand to execute the given handler.
@@ -222,7 +222,7 @@ public:
   }
 
 #if !defined(ASIO_NO_DEPRECATED)
-  /// (Deprecated: Use asio::post().) Request the strand to invoke the
+  /// (Deprecated: Use ASIO_LIBNS::post().) Request the strand to invoke the
   /// given handler and return immediately.
   /**
    * This function is used to ask the strand to execute the given handler, but
@@ -272,7 +272,7 @@ public:
   }
 
 #if !defined(ASIO_NO_DEPRECATED)
-  /// (Deprecated: Use asio::bind_executor().) Create a new handler that
+  /// (Deprecated: Use ASIO_LIBNS::bind_executor().) Create a new handler that
   /// automatically dispatches the wrapped handler on the strand.
   /**
    * This function is used to create a new handler function object that, when
@@ -374,8 +374,8 @@ private:
   };
 #endif // !defined(ASIO_NO_DEPRECATED)
 
-  asio::detail::strand_service& service_;
-  mutable asio::detail::strand_service::implementation_type impl_;
+  ASIO_LIBNS::detail::strand_service& service_;
+  mutable ASIO_LIBNS::detail::strand_service::implementation_type impl_;
 };
 
 } // namespace asio

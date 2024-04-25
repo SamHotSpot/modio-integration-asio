@@ -25,7 +25,7 @@
 
 #if defined(GENERATING_DOCUMENTATION)
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace execution {
 
 /// A customisation point that is used to obtain a sender from a scheduler.
@@ -69,12 +69,12 @@ struct can_schedule :
 
 namespace asio_execution_schedule_fn {
 
-using asio::decay;
-using asio::declval;
-using asio::enable_if;
-using asio::execution::is_executor;
-using asio::traits::schedule_free;
-using asio::traits::schedule_member;
+using ASIO_LIBNS::decay;
+using ASIO_LIBNS::declval;
+using ASIO_LIBNS::enable_if;
+using ASIO_LIBNS::execution::is_executor;
+using ASIO_LIBNS::traits::schedule_free;
+using ASIO_LIBNS::traits::schedule_member;
 
 void schedule();
 
@@ -238,7 +238,7 @@ template <typename T>
 const T static_instance<T>::instance = {};
 
 } // namespace asio_execution_schedule_fn
-namespace asio {
+namespace ASIO_LIBNS {
 namespace execution {
 namespace {
 

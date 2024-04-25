@@ -37,7 +37,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 template <typename Protocol>
@@ -54,10 +54,10 @@ public:
   typedef typename Protocol::endpoint endpoint_type;
 
   // The query type.
-  typedef asio::ip::basic_resolver_query<Protocol> query_type;
+  typedef ASIO_LIBNS::ip::basic_resolver_query<Protocol> query_type;
 
   // The results type.
-  typedef asio::ip::basic_resolver_results<Protocol> results_type;
+  typedef ASIO_LIBNS::ip::basic_resolver_results<Protocol> results_type;
 
   // Constructor.
   winrt_resolver_service(execution_context& context)
@@ -112,7 +112,7 @@ public:
 
   // Resolve a query to a list of entries.
   results_type resolve(implementation_type&,
-      const query_type& query, asio::error_code& ec)
+      const query_type& query, ASIO_LIBNS::error_code& ec)
   {
     try
     {
@@ -131,8 +131,8 @@ public:
     }
     catch (Platform::Exception^ e)
     {
-      ec = asio::error_code(e->HResult,
-          asio::system_category());
+      ec = ASIO_LIBNS::error_code(e->HResult,
+          ASIO_LIBNS::system_category());
       return results_type();
     }
   }
@@ -147,7 +147,7 @@ public:
 
     // Allocate and construct an operation to wrap the handler.
     typedef winrt_resolve_op<Protocol, Handler, IoExecutor> op;
-    typename op::ptr p = { asio::detail::addressof(handler),
+    typename op::ptr p = { ASIO_LIBNS::detail::addressof(handler),
       op::ptr::allocate(handler), 0 };
     p.p = new (p.v) op(query, handler, io_ex);
 
@@ -165,8 +165,8 @@ public:
     }
     catch (Platform::Exception^ e)
     {
-      p.p->ec_ = asio::error_code(
-          e->HResult, asio::system_category());
+      p.p->ec_ = ASIO_LIBNS::error_code(
+          e->HResult, ASIO_LIBNS::system_category());
       scheduler_.post_immediate_completion(p.p, is_continuation);
       p.v = p.p = 0;
     }
@@ -174,9 +174,9 @@ public:
 
   // Resolve an endpoint to a list of entries.
   results_type resolve(implementation_type&,
-      const endpoint_type&, asio::error_code& ec)
+      const endpoint_type&, ASIO_LIBNS::error_code& ec)
   {
-    ec = asio::error::operation_not_supported;
+    ec = ASIO_LIBNS::error::operation_not_supported;
     return results_type();
   }
 
@@ -185,9 +185,9 @@ public:
   void async_resolve(implementation_type&, const endpoint_type&,
       Handler& handler, const IoExecutor& io_ex)
   {
-    asio::error_code ec = asio::error::operation_not_supported;
+    ASIO_LIBNS::error_code ec = ASIO_LIBNS::error::operation_not_supported;
     const results_type results;
-    asio::post(io_ex, detail::bind_handler(handler, ec, results));
+    ASIO_LIBNS::post(io_ex, detail::bind_handler(handler, ec, results));
   }
 
 private:

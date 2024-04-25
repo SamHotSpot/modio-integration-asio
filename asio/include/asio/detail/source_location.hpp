@@ -28,7 +28,7 @@
   but no source_location is available
 #endif // defined(ASIO_HAS_STD_EXPERIMENTAL_SOURCE_LOCATION)
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 #if defined(ASIO_HAS_STD_SOURCE_LOCATION)

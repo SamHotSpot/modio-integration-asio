@@ -36,7 +36,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace windows {
 
 /// Provides Windows handle functionality for objects that support
@@ -69,7 +69,7 @@ public:
 #if defined(GENERATING_DOCUMENTATION)
   typedef implementation_defined native_handle_type;
 #else
-  typedef asio::detail::win_iocp_handle_service::native_handle_type
+  typedef ASIO_LIBNS::detail::win_iocp_handle_service::native_handle_type
     native_handle_type;
 #endif
 
@@ -118,15 +118,15 @@ public:
    *
    * @param native_handle The new underlying handle implementation.
    *
-   * @throws asio::system_error Thrown on failure.
+   * @throws ASIO_LIBNS::system_error Thrown on failure.
    */
   basic_overlapped_handle(const executor_type& ex,
       const native_handle_type& native_handle)
     : impl_(0, ex)
   {
-    asio::error_code ec;
+    ASIO_LIBNS::error_code ec;
     impl_.get_service().assign(impl_.get_implementation(), native_handle, ec);
-    asio::detail::throw_error(ec, "assign");
+    ASIO_LIBNS::detail::throw_error(ec, "assign");
   }
 
   /// Construct an overlapped handle on an existing native handle.
@@ -140,7 +140,7 @@ public:
    *
    * @param native_handle The new underlying handle implementation.
    *
-   * @throws asio::system_error Thrown on failure.
+   * @throws ASIO_LIBNS::system_error Thrown on failure.
    */
   template <typename ExecutionContext>
   basic_overlapped_handle(ExecutionContext& context,
@@ -150,9 +150,9 @@ public:
       >::type = 0)
     : impl_(0, 0, context)
   {
-    asio::error_code ec;
+    ASIO_LIBNS::error_code ec;
     impl_.get_service().assign(impl_.get_implementation(), native_handle, ec);
-    asio::detail::throw_error(ec, "assign");
+    ASIO_LIBNS::detail::throw_error(ec, "assign");
   }
 
 #if defined(ASIO_HAS_MOVE) || defined(GENERATING_DOCUMENTATION)
@@ -277,13 +277,13 @@ public:
    *
    * @param handle A native handle.
    *
-   * @throws asio::system_error Thrown on failure.
+   * @throws ASIO_LIBNS::system_error Thrown on failure.
    */
   void assign(const native_handle_type& handle)
   {
-    asio::error_code ec;
+    ASIO_LIBNS::error_code ec;
     impl_.get_service().assign(impl_.get_implementation(), handle, ec);
-    asio::detail::throw_error(ec, "assign");
+    ASIO_LIBNS::detail::throw_error(ec, "assign");
   }
 
   /// Assign an existing native handle to the handle.
@@ -295,7 +295,7 @@ public:
    * @param ec Set to indicate what error occurred, if any.
    */
   ASIO_SYNC_OP_VOID assign(const native_handle_type& handle,
-      asio::error_code& ec)
+      ASIO_LIBNS::error_code& ec)
   {
     impl_.get_service().assign(impl_.get_implementation(), handle, ec);
     ASIO_SYNC_OP_VOID_RETURN(ec);
@@ -311,26 +311,26 @@ public:
   /**
    * This function is used to close the handle. Any asynchronous read or write
    * operations will be cancelled immediately, and will complete with the
-   * asio::error::operation_aborted error.
+   * ASIO_LIBNS::error::operation_aborted error.
    *
-   * @throws asio::system_error Thrown on failure.
+   * @throws ASIO_LIBNS::system_error Thrown on failure.
    */
   void close()
   {
-    asio::error_code ec;
+    ASIO_LIBNS::error_code ec;
     impl_.get_service().close(impl_.get_implementation(), ec);
-    asio::detail::throw_error(ec, "close");
+    ASIO_LIBNS::detail::throw_error(ec, "close");
   }
 
   /// Close the handle.
   /**
    * This function is used to close the handle. Any asynchronous read or write
    * operations will be cancelled immediately, and will complete with the
-   * asio::error::operation_aborted error.
+   * ASIO_LIBNS::error::operation_aborted error.
    *
    * @param ec Set to indicate what error occurred, if any.
    */
-  ASIO_SYNC_OP_VOID close(asio::error_code& ec)
+  ASIO_SYNC_OP_VOID close(ASIO_LIBNS::error_code& ec)
   {
     impl_.get_service().close(impl_.get_implementation(), ec);
     ASIO_SYNC_OP_VOID_RETURN(ec);
@@ -340,13 +340,13 @@ public:
   /**
    * This function causes all outstanding asynchronous operations to finish
    * immediately, and the handlers for cancelled operations will be passed the
-   * asio::error::operation_aborted error. Ownership of the native handle
+   * ASIO_LIBNS::error::operation_aborted error. Ownership of the native handle
    * is then transferred to the caller.
    *
-   * @throws asio::system_error Thrown on failure.
+   * @throws ASIO_LIBNS::system_error Thrown on failure.
    *
    * @note This function is unsupported on Windows versions prior to Windows
-   * 8.1, and will fail with asio::error::operation_not_supported on
+   * 8.1, and will fail with ASIO_LIBNS::error::operation_not_supported on
    * these platforms.
    */
 #if defined(ASIO_MSVC) && (ASIO_MSVC >= 1400) \
@@ -357,10 +357,10 @@ public:
 #endif
   native_handle_type release()
   {
-    asio::error_code ec;
+    ASIO_LIBNS::error_code ec;
     native_handle_type s = impl_.get_service().release(
         impl_.get_implementation(), ec);
-    asio::detail::throw_error(ec, "release");
+    ASIO_LIBNS::detail::throw_error(ec, "release");
     return s;
   }
 
@@ -368,13 +368,13 @@ public:
   /**
    * This function causes all outstanding asynchronous operations to finish
    * immediately, and the handlers for cancelled operations will be passed the
-   * asio::error::operation_aborted error. Ownership of the native handle
+   * ASIO_LIBNS::error::operation_aborted error. Ownership of the native handle
    * is then transferred to the caller.
    *
    * @param ec Set to indicate what error occurred, if any.
    *
    * @note This function is unsupported on Windows versions prior to Windows
-   * 8.1, and will fail with asio::error::operation_not_supported on
+   * 8.1, and will fail with ASIO_LIBNS::error::operation_not_supported on
    * these platforms.
    */
 #if defined(ASIO_MSVC) && (ASIO_MSVC >= 1400) \
@@ -383,7 +383,7 @@ public:
         "operation_not_supported when used on Windows versions "
         "prior to Windows 8.1."))
 #endif
-  native_handle_type release(asio::error_code& ec)
+  native_handle_type release(ASIO_LIBNS::error_code& ec)
   {
     return impl_.get_service().release(impl_.get_implementation(), ec);
   }
@@ -403,26 +403,26 @@ public:
   /**
    * This function causes all outstanding asynchronous read or write operations
    * to finish immediately, and the handlers for cancelled operations will be
-   * passed the asio::error::operation_aborted error.
+   * passed the ASIO_LIBNS::error::operation_aborted error.
    *
-   * @throws asio::system_error Thrown on failure.
+   * @throws ASIO_LIBNS::system_error Thrown on failure.
    */
   void cancel()
   {
-    asio::error_code ec;
+    ASIO_LIBNS::error_code ec;
     impl_.get_service().cancel(impl_.get_implementation(), ec);
-    asio::detail::throw_error(ec, "cancel");
+    ASIO_LIBNS::detail::throw_error(ec, "cancel");
   }
 
   /// Cancel all asynchronous operations associated with the handle.
   /**
    * This function causes all outstanding asynchronous read or write operations
    * to finish immediately, and the handlers for cancelled operations will be
-   * passed the asio::error::operation_aborted error.
+   * passed the ASIO_LIBNS::error::operation_aborted error.
    *
    * @param ec Set to indicate what error occurred, if any.
    */
-  ASIO_SYNC_OP_VOID cancel(asio::error_code& ec)
+  ASIO_SYNC_OP_VOID cancel(ASIO_LIBNS::error_code& ec)
   {
     impl_.get_service().cancel(impl_.get_implementation(), ec);
     ASIO_SYNC_OP_VOID_RETURN(ec);
@@ -438,8 +438,8 @@ protected:
   {
   }
 
-  asio::detail::io_object_impl<
-    asio::detail::win_iocp_handle_service, Executor> impl_;
+  ASIO_LIBNS::detail::io_object_impl<
+    ASIO_LIBNS::detail::win_iocp_handle_service, Executor> impl_;
 
 private:
   // Disallow copying and assignment.

@@ -22,7 +22,7 @@
 
 #include "asio/basic_readable_pipe.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// Typedef for the typical usage of a readable pipe.
 typedef basic_readable_pipe<> readable_pipe;

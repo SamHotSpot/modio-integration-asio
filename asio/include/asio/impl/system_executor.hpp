@@ -22,7 +22,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 template <typename Blocking, typename Relationship, typename Allocator>
 inline system_context&

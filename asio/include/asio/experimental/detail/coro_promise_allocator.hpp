@@ -15,7 +15,7 @@
 #include "asio/detail/config.hpp"
 #include "asio/experimental/coro_traits.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace experimental {
 namespace detail {
 

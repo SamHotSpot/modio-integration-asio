@@ -21,31 +21,31 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace ip {
 
 #if !defined(ASIO_NO_DEPRECATED)
 
 inline address_v4 address_v4::from_string(const char* str)
 {
-  return asio::ip::make_address_v4(str);
+  return ASIO_LIBNS::ip::make_address_v4(str);
 }
 
 inline address_v4 address_v4::from_string(
-    const char* str, asio::error_code& ec)
+    const char* str, ASIO_LIBNS::error_code& ec)
 {
-  return asio::ip::make_address_v4(str, ec);
+  return ASIO_LIBNS::ip::make_address_v4(str, ec);
 }
 
 inline address_v4 address_v4::from_string(const std::string& str)
 {
-  return asio::ip::make_address_v4(str);
+  return ASIO_LIBNS::ip::make_address_v4(str);
 }
 
 inline address_v4 address_v4::from_string(
-    const std::string& str, asio::error_code& ec)
+    const std::string& str, ASIO_LIBNS::error_code& ec)
 {
-  return asio::ip::make_address_v4(str, ec);
+  return ASIO_LIBNS::ip::make_address_v4(str, ec);
 }
 
 #endif // !defined(ASIO_NO_DEPRECATED)

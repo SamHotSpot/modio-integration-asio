@@ -22,7 +22,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace execution {
 namespace detail {
 
@@ -70,7 +70,7 @@ ASIO_CONSTEXPR const bool is_scheduler_v = is_scheduler<T>::value;
 template <typename T>
 ASIO_CONCEPT scheduler = is_scheduler<T>::value;
 
-#define ASIO_EXECUTION_SCHEDULER ::asio::execution::scheduler
+#define ASIO_EXECUTION_SCHEDULER ::ASIO_LIBNS::execution::scheduler
 
 #else // defined(ASIO_HAS_CONCEPTS)
 

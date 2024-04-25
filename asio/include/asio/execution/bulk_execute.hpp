@@ -28,7 +28,7 @@
 
 #if defined(GENERATING_DOCUMENTATION)
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace execution {
 
 /// A customisation point that creates a bulk sender.
@@ -41,7 +41,7 @@ namespace execution {
  * @li <tt>S.bulk_execute(F, N)</tt>, if that expression is valid. If the
  *   function selected does not execute <tt>N</tt> invocations of the function
  *   object <tt>F</tt> on the executor <tt>S</tt> in bulk with forward progress
- *   guarantee <tt>asio::query(S, execution::bulk_guarantee)</tt>, and
+ *   guarantee <tt>ASIO_LIBNS::query(S, execution::bulk_guarantee)</tt>, and
  *   the result of that function does not model <tt>sender<void></tt>, the
  *   program is ill-formed with no diagnostic required.
  *
@@ -51,14 +51,14 @@ namespace execution {
  *   declaration of <tt>execution::bulk_execute</tt>. If the function selected
  *   by overload resolution does not execute <tt>N</tt> invocations of the
  *   function object <tt>F</tt> on the executor <tt>S</tt> in bulk with forward
- *   progress guarantee <tt>asio::query(E,
+ *   progress guarantee <tt>ASIO_LIBNS::query(E,
  *   execution::bulk_guarantee)</tt>, and the result of that function does not
  *   model <tt>sender<void></tt>, the program is ill-formed with no diagnostic
  *   required.
  *
  * @li Otherwise, if the types <tt>F</tt> and
  *   <tt>executor_index_t<remove_cvref_t<S>></tt> model <tt>invocable</tt> and
- *   if <tt>asio::query(S, execution::bulk_guarantee)</tt> equals
+ *   if <tt>ASIO_LIBNS::query(S, execution::bulk_guarantee)</tt> equals
  *   <tt>execution::bulk_guarantee.unsequenced</tt>, then
  *
  *    - Evaluates <tt>DECAY_COPY(std::forward<decltype(F)>(F))</tt> on the
@@ -100,19 +100,19 @@ struct can_bulk_execute :
 
 namespace asio_execution_bulk_execute_fn {
 
-using asio::declval;
-using asio::enable_if;
-using asio::execution::bulk_guarantee_t;
-using asio::execution::detail::bulk_sender;
-using asio::execution::executor_index;
-using asio::execution::is_sender;
-using asio::is_convertible;
-using asio::is_same;
-using asio::remove_cvref;
-using asio::result_of;
-using asio::traits::bulk_execute_free;
-using asio::traits::bulk_execute_member;
-using asio::traits::static_require;
+using ASIO_LIBNS::declval;
+using ASIO_LIBNS::enable_if;
+using ASIO_LIBNS::execution::bulk_guarantee_t;
+using ASIO_LIBNS::execution::detail::bulk_sender;
+using ASIO_LIBNS::execution::executor_index;
+using ASIO_LIBNS::execution::is_sender;
+using ASIO_LIBNS::is_convertible;
+using ASIO_LIBNS::is_same;
+using ASIO_LIBNS::remove_cvref;
+using ASIO_LIBNS::result_of;
+using ASIO_LIBNS::traits::bulk_execute_free;
+using ASIO_LIBNS::traits::bulk_execute_member;
+using ASIO_LIBNS::traits::static_require;
 
 void bulk_execute();
 
@@ -338,7 +338,7 @@ template <typename T>
 const T static_instance<T>::instance = {};
 
 } // namespace asio_execution_bulk_execute_fn
-namespace asio {
+namespace ASIO_LIBNS {
 namespace execution {
 namespace {
 

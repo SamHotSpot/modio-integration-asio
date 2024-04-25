@@ -19,10 +19,10 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace ssl {
 
-/// The stream_base class is used as a base for the asio::ssl::stream
+/// The stream_base class is used as a base for the ASIO_LIBNS::ssl::stream
 /// class template so that we have a common place to define various enums.
 class stream_base
 {

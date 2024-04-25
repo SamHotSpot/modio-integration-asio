@@ -30,7 +30,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 #if defined(GENERATING_DOCUMENTATION)
 
@@ -411,7 +411,7 @@ struct bulk_guarantee_t
 #endif // defined(ASIO_MSVC)
 #endif // !defined(__clang__)
   {
-    return asio::query(ex, unsequenced_t());
+    return ASIO_LIBNS::query(ex, unsequenced_t());
   }
 
   template <typename Executor>
@@ -434,7 +434,7 @@ struct bulk_guarantee_t
 #endif // defined(ASIO_MSVC)
 #endif // !defined(__clang__)
   {
-    return asio::query(ex, sequenced_t());
+    return ASIO_LIBNS::query(ex, sequenced_t());
   }
 
   template <typename Executor>
@@ -459,7 +459,7 @@ struct bulk_guarantee_t
 #endif // defined(ASIO_MSVC)
 #endif // !defined(__clang__)
   {
-    return asio::query(ex, parallel_t());
+    return ASIO_LIBNS::query(ex, parallel_t());
   }
 
   ASIO_STATIC_CONSTEXPR_DEFAULT_INIT(unsequenced_t, unsequenced);

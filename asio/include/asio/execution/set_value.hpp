@@ -25,7 +25,7 @@
 
 #if defined(GENERATING_DOCUMENTATION)
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace execution {
 
 /// A customisation point that delivers a value to a receiver.
@@ -71,11 +71,11 @@ struct can_set_value :
 
 namespace asio_execution_set_value_fn {
 
-using asio::decay;
-using asio::declval;
-using asio::enable_if;
-using asio::traits::set_value_free;
-using asio::traits::set_value_member;
+using ASIO_LIBNS::decay;
+using ASIO_LIBNS::declval;
+using ASIO_LIBNS::enable_if;
+using ASIO_LIBNS::traits::set_value_free;
+using ASIO_LIBNS::traits::set_value_member;
 
 void set_value();
 
@@ -382,7 +382,7 @@ template <typename T>
 const T static_instance<T>::instance = {};
 
 } // namespace asio_execution_set_value_fn
-namespace asio {
+namespace ASIO_LIBNS {
 namespace execution {
 namespace {
 

@@ -26,7 +26,7 @@
 
 #if defined(GENERATING_DOCUMENTATION)
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace execution {
 
 /// A customisation point that executes a function on an executor.
@@ -70,7 +70,7 @@ struct can_execute :
 
 #else // defined(GENERATING_DOCUMENTATION)
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace execution {
 
 template <typename T, typename R>
@@ -86,19 +86,19 @@ void submit_helper(ASIO_MOVE_ARG(S) s, ASIO_MOVE_ARG(R) r);
 } // namespace asio
 namespace asio_execution_execute_fn {
 
-using asio::conditional;
-using asio::decay;
-using asio::declval;
-using asio::enable_if;
-using asio::execution::detail::as_receiver;
-using asio::execution::detail::is_as_invocable;
-using asio::execution::is_sender_to;
-using asio::false_type;
-using asio::result_of;
-using asio::traits::execute_free;
-using asio::traits::execute_member;
-using asio::true_type;
-using asio::void_type;
+using ASIO_LIBNS::conditional;
+using ASIO_LIBNS::decay;
+using ASIO_LIBNS::declval;
+using ASIO_LIBNS::enable_if;
+using ASIO_LIBNS::execution::detail::as_receiver;
+using ASIO_LIBNS::execution::detail::is_as_invocable;
+using ASIO_LIBNS::execution::is_sender_to;
+using ASIO_LIBNS::false_type;
+using ASIO_LIBNS::result_of;
+using ASIO_LIBNS::traits::execute_free;
+using ASIO_LIBNS::traits::execute_member;
+using ASIO_LIBNS::true_type;
+using ASIO_LIBNS::void_type;
 
 void execute();
 
@@ -229,7 +229,7 @@ struct impl
     ASIO_NOEXCEPT_IF((
       call_traits<impl, T, void(F)>::is_noexcept))
   {
-    return asio::execution::detail::submit_helper(
+    return ASIO_LIBNS::execution::detail::submit_helper(
         ASIO_MOVE_CAST(T)(t),
         as_receiver<typename decay<F>::type, T>(
           ASIO_MOVE_CAST(F)(f), 0));
@@ -246,7 +246,7 @@ template <typename T>
 const T static_instance<T>::instance = {};
 
 } // namespace asio_execution_execute_fn
-namespace asio {
+namespace ASIO_LIBNS {
 namespace execution {
 namespace {
 

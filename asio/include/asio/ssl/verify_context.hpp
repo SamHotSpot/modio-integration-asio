@@ -22,7 +22,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace ssl {
 
 /// A simple wrapper around the X509_STORE_CTX type, used during verification of

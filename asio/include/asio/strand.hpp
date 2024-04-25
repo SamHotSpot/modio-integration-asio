@@ -24,7 +24,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// Provides serialised function invocation for any executor type.
 template <typename Executor>
@@ -158,12 +158,12 @@ public:
   /// Forward a query to the underlying executor.
   /**
    * Do not call this function directly. It is intended for use with the
-   * asio::query customisation point.
+   * ASIO_LIBNS::query customisation point.
    *
    * For example:
-   * @code asio::strand<my_executor_type> ex = ...;
-   * if (asio::query(ex, asio::execution::blocking)
-   *       == asio::execution::blocking.never)
+   * @code ASIO_LIBNS::strand<my_executor_type> ex = ...;
+   * if (ASIO_LIBNS::query(ex, ASIO_LIBNS::execution::blocking)
+   *       == ASIO_LIBNS::execution::blocking.never)
    *   ... @endcode
    */
   template <typename Property>
@@ -185,12 +185,12 @@ public:
   /// Forward a requirement to the underlying executor.
   /**
    * Do not call this function directly. It is intended for use with the
-   * asio::require customisation point.
+   * ASIO_LIBNS::require customisation point.
    *
    * For example:
-   * @code asio::strand<my_executor_type> ex1 = ...;
-   * auto ex2 = asio::require(ex1,
-   *     asio::execution::blocking.never); @endcode
+   * @code ASIO_LIBNS::strand<my_executor_type> ex1 = ...;
+   * auto ex2 = ASIO_LIBNS::require(ex1,
+   *     ASIO_LIBNS::execution::blocking.never); @endcode
    */
   template <typename Property>
   typename constraint<
@@ -205,18 +205,18 @@ public:
   {
     return strand<typename decay<
       typename require_result<const Executor&, Property>::type
-        >::type>(asio::require(executor_, p), impl_);
+        >::type>(ASIO_LIBNS::require(executor_, p), impl_);
   }
 
   /// Forward a preference to the underlying executor.
   /**
    * Do not call this function directly. It is intended for use with the
-   * asio::prefer customisation point.
+   * ASIO_LIBNS::prefer customisation point.
    *
    * For example:
-   * @code asio::strand<my_executor_type> ex1 = ...;
-   * auto ex2 = asio::prefer(ex1,
-   *     asio::execution::blocking.never); @endcode
+   * @code ASIO_LIBNS::strand<my_executor_type> ex1 = ...;
+   * auto ex2 = ASIO_LIBNS::prefer(ex1,
+   *     ASIO_LIBNS::execution::blocking.never); @endcode
    */
   template <typename Property>
   typename constraint<
@@ -231,7 +231,7 @@ public:
   {
     return strand<typename decay<
       typename prefer_result<const Executor&, Property>::type
-        >::type>(asio::prefer(executor_, p), impl_);
+        >::type>(ASIO_LIBNS::prefer(executor_, p), impl_);
   }
 
 #if !defined(ASIO_NO_TS_EXECUTORS)
@@ -266,7 +266,7 @@ public:
    * execution::execute customisation point.
    *
    * For example:
-   * @code asio::strand<my_executor_type> ex = ...;
+   * @code ASIO_LIBNS::strand<my_executor_type> ex = ...;
    * execution::execute(ex, my_function_object); @endcode
    *
    * This function is used to ask the strand to execute the given function
@@ -395,7 +395,7 @@ private:
       >::type = 0)
   {
     return use_service<detail::strand_executor_service>(
-        asio::query(ex, execution::context)).create_implementation();
+        ASIO_LIBNS::query(ex, execution::context)).create_implementation();
   }
 
   template <typename InnerExecutor>
@@ -418,13 +418,13 @@ private:
   typename query_result<const Executor&, Property>::type query_helper(
       false_type, const Property& property) const
   {
-    return asio::query(executor_, property);
+    return ASIO_LIBNS::query(executor_, property);
   }
 
   template <typename Property>
   execution::blocking_t query_helper(true_type, const Property& property) const
   {
-    execution::blocking_t result = asio::query(executor_, property);
+    execution::blocking_t result = ASIO_LIBNS::query(executor_, property);
     return result == execution::blocking.always
       ? execution::blocking.possibly : result;
   }
@@ -433,9 +433,9 @@ private:
   implementation_type impl_;
 };
 
-/** @defgroup make_strand asio::make_strand
+/** @defgroup make_strand ASIO_LIBNS::make_strand
  *
- * @brief The asio::make_strand function creates a @ref strand object for
+ * @brief The ASIO_LIBNS::make_strand function creates a @ref strand object for
  * an executor or execution context.
  */
 /*@{*/

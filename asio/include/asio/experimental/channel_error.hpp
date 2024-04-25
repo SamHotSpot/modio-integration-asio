@@ -20,7 +20,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace experimental {
 namespace error {
 
@@ -34,11 +34,11 @@ enum channel_errors
 };
 
 extern ASIO_DECL
-const asio::error_category& get_channel_category();
+const ASIO_LIBNS::error_category& get_channel_category();
 
-static const asio::error_category&
+static const ASIO_LIBNS::error_category&
   channel_category ASIO_UNUSED_VARIABLE
-  = asio::experimental::error::get_channel_category();
+  = ASIO_LIBNS::experimental::error::get_channel_category();
 
 } // namespace error
 namespace channel_errc {
@@ -53,7 +53,7 @@ namespace channel_errc {
 namespace std {
 
 template<> struct is_error_code_enum<
-    asio::experimental::error::channel_errors>
+    ASIO_LIBNS::experimental::error::channel_errors>
 {
   static const bool value = true;
 };
@@ -61,13 +61,13 @@ template<> struct is_error_code_enum<
 } // namespace std
 #endif // defined(ASIO_HAS_STD_SYSTEM_ERROR)
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace experimental {
 namespace error {
 
-inline asio::error_code make_error_code(channel_errors e)
+inline ASIO_LIBNS::error_code make_error_code(channel_errors e)
 {
-  return asio::error_code(
+  return ASIO_LIBNS::error_code(
       static_cast<int>(e), get_channel_category());
 }
 

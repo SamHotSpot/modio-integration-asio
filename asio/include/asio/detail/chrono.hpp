@@ -23,7 +23,7 @@
 # include <boost/chrono/system_clocks.hpp>
 #endif // defined(ASIO_HAS_BOOST_CHRONO)
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace chrono {
 
 #if defined(ASIO_HAS_STD_CHRONO)

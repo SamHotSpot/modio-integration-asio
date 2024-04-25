@@ -24,7 +24,7 @@
 
 #if defined(GENERATING_DOCUMENTATION)
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace execution {
 
 /// A customisation point that notifies an operation state object to start
@@ -65,11 +65,11 @@ struct can_start :
 
 namespace asio_execution_start_fn {
 
-using asio::decay;
-using asio::declval;
-using asio::enable_if;
-using asio::traits::start_free;
-using asio::traits::start_member;
+using ASIO_LIBNS::decay;
+using ASIO_LIBNS::declval;
+using ASIO_LIBNS::enable_if;
+using ASIO_LIBNS::traits::start_free;
+using ASIO_LIBNS::traits::start_member;
 
 void start();
 
@@ -198,7 +198,7 @@ template <typename T>
 const T static_instance<T>::instance = {};
 
 } // namespace asio_execution_start_fn
-namespace asio {
+namespace ASIO_LIBNS {
 namespace execution {
 namespace {
 

@@ -21,14 +21,14 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace ip {
 
 /// Get the current host name.
 ASIO_DECL std::string host_name();
 
 /// Get the current host name.
-ASIO_DECL std::string host_name(asio::error_code& ec);
+ASIO_DECL std::string host_name(ASIO_LIBNS::error_code& ec);
 
 } // namespace ip
 } // namespace asio

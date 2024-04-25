@@ -20,9 +20,9 @@
 #include "asio/system_error.hpp"
 
 
-inline const asio::error_category& get_system_category()
+inline const ASIO_LIBNS::error_category& get_system_category()
 {
-	return asio::system_category();
+	return ASIO_LIBNS::system_category();
 }
 
 #if !defined(ASIO_DISABLE_SOCKETS)
@@ -69,10 +69,10 @@ inline const asio::error_category& get_system_category()
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace error {
 
-inline const asio::error_category& get_system_category();
+inline const ASIO_LIBNS::error_category& get_system_category();
 
 	enum basic_errors
 {
@@ -265,33 +265,33 @@ enum misc_errors
        //   && defined(ASIO_HAS_BOOST_CONFIG)
        //   && (BOOST_VERSION >= 107900)
 
-inline void clear(asio::error_code& ec)
+inline void clear(ASIO_LIBNS::error_code& ec)
 {
   ec.assign(0, ec.category());
 }
 
-inline const asio::error_category& get_system_category()
+inline const ASIO_LIBNS::error_category& get_system_category()
 {
-  return asio::system_category();
+  return ASIO_LIBNS::system_category();
 }
 
 
 #if !defined(ASIO_WINDOWS) && !defined(__CYGWIN__)
 
 extern ASIO_DECL
-const asio::error_category& get_netdb_category();
+const ASIO_LIBNS::error_category& get_netdb_category();
 
 extern ASIO_DECL
-const asio::error_category& get_addrinfo_category();
+const ASIO_LIBNS::error_category& get_addrinfo_category();
 
 #else // !defined(ASIO_WINDOWS) && !defined(__CYGWIN__)
 
-inline const asio::error_category& get_netdb_category()
+inline const ASIO_LIBNS::error_category& get_netdb_category()
 {
   return get_system_category();
 }
 
-inline const asio::error_category& get_addrinfo_category()
+inline const ASIO_LIBNS::error_category& get_addrinfo_category()
 {
   return get_system_category();
 }
@@ -299,20 +299,20 @@ inline const asio::error_category& get_addrinfo_category()
 #endif // !defined(ASIO_WINDOWS) && !defined(__CYGWIN__)
 
 extern ASIO_DECL
-const asio::error_category& get_misc_category();
+const ASIO_LIBNS::error_category& get_misc_category();
 
-static const asio::error_category&
+static const ASIO_LIBNS::error_category&
   system_category ASIO_UNUSED_VARIABLE
-  = asio::error::get_system_category();
-static const asio::error_category&
+  = ASIO_LIBNS::error::get_system_category();
+static const ASIO_LIBNS::error_category&
   netdb_category ASIO_UNUSED_VARIABLE
-  = asio::error::get_netdb_category();
-static const asio::error_category&
+  = ASIO_LIBNS::error::get_netdb_category();
+static const ASIO_LIBNS::error_category&
   addrinfo_category ASIO_UNUSED_VARIABLE
-  = asio::error::get_addrinfo_category();
-static const asio::error_category&
+  = ASIO_LIBNS::error::get_addrinfo_category();
+static const ASIO_LIBNS::error_category&
   misc_category ASIO_UNUSED_VARIABLE
-  = asio::error::get_misc_category();
+  = ASIO_LIBNS::error::get_misc_category();
 
 } // namespace error
 } // namespace asio
@@ -321,17 +321,17 @@ static const asio::error_category&
 namespace std {
 
 
-template<> struct is_error_code_enum<asio::error::netdb_errors>
+template<> struct is_error_code_enum<ASIO_LIBNS::error::netdb_errors>
 {
   static const bool value = true;
 };
 
-template<> struct is_error_code_enum<asio::error::addrinfo_errors>
+template<> struct is_error_code_enum<ASIO_LIBNS::error::addrinfo_errors>
 {
   static const bool value = true;
 };
 
-template<> struct is_error_code_enum<asio::error::misc_errors>
+template<> struct is_error_code_enum<ASIO_LIBNS::error::misc_errors>
 {
   static const bool value = true;
 };
@@ -339,24 +339,24 @@ template<> struct is_error_code_enum<asio::error::misc_errors>
 } // namespace std
 #endif // defined(ASIO_HAS_STD_SYSTEM_ERROR)
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace error {
 
-inline asio::error_code make_error_code(netdb_errors e)
+inline ASIO_LIBNS::error_code make_error_code(netdb_errors e)
 {
-  return asio::error_code(
+  return ASIO_LIBNS::error_code(
       static_cast<int>(e), get_netdb_category());
 }
 
-inline asio::error_code make_error_code(addrinfo_errors e)
+inline ASIO_LIBNS::error_code make_error_code(addrinfo_errors e)
 {
-  return asio::error_code(
+  return ASIO_LIBNS::error_code(
       static_cast<int>(e), get_addrinfo_category());
 }
 
-inline asio::error_code make_error_code(misc_errors e)
+inline ASIO_LIBNS::error_code make_error_code(misc_errors e)
 {
-  return asio::error_code(
+  return ASIO_LIBNS::error_code(
       static_cast<int>(e), get_misc_category());
 }
 
@@ -391,7 +391,7 @@ namespace resolver_errc {
 # include "asio/impl/error.ipp"
 #endif // defined(ASIO_HEADER_ONLY)
 #else
-namespace asio {
+namespace ASIO_LIBNS {
 namespace error {
 
 enum basic_errors
@@ -405,12 +405,12 @@ enum basic_errors
 
 #endif
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace error {
 
-inline asio::error_code make_error_code(basic_errors e)
+inline ASIO_LIBNS::error_code make_error_code(basic_errors e)
 {
-  return asio::error_code(
+  return ASIO_LIBNS::error_code(
       static_cast<int>(e), get_system_category());
 }
 
@@ -420,7 +420,7 @@ inline asio::error_code make_error_code(basic_errors e)
 #if defined(ASIO_HAS_STD_SYSTEM_ERROR)
 namespace std {
 
-template<> struct is_error_code_enum<asio::error::basic_errors>
+template<> struct is_error_code_enum<ASIO_LIBNS::error::basic_errors>
 {
   static const bool value = true;
 };

@@ -41,7 +41,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 template <typename Protocol>
@@ -122,8 +122,8 @@ public:
   }
 
   // Open a new socket implementation.
-  asio::error_code open(implementation_type& impl,
-      const protocol_type& protocol, asio::error_code& ec)
+  ASIO_LIBNS::error_code open(implementation_type& impl,
+      const protocol_type& protocol, ASIO_LIBNS::error_code& ec)
   {
     if (!do_open(impl, protocol.family(),
           protocol.type(), protocol.protocol(), ec))
@@ -134,9 +134,9 @@ public:
   }
 
   // Assign a native socket to a socket implementation.
-  asio::error_code assign(implementation_type& impl,
+  ASIO_LIBNS::error_code assign(implementation_type& impl,
       const protocol_type& protocol, const native_handle_type& native_socket,
-      asio::error_code& ec)
+      ASIO_LIBNS::error_code& ec)
   {
     if (!do_assign(impl, protocol.type(), native_socket, ec))
       impl.protocol_ = protocol;
@@ -152,8 +152,8 @@ public:
   }
 
   // Bind the socket to the specified local endpoint.
-  asio::error_code bind(implementation_type& impl,
-      const endpoint_type& endpoint, asio::error_code& ec)
+  ASIO_LIBNS::error_code bind(implementation_type& impl,
+      const endpoint_type& endpoint, ASIO_LIBNS::error_code& ec)
   {
     socket_ops::bind(impl.socket_, endpoint.data(), endpoint.size(), ec);
 
@@ -163,8 +163,8 @@ public:
 
   // Set a socket option.
   template <typename Option>
-  asio::error_code set_option(implementation_type& impl,
-      const Option& option, asio::error_code& ec)
+  ASIO_LIBNS::error_code set_option(implementation_type& impl,
+      const Option& option, ASIO_LIBNS::error_code& ec)
   {
     socket_ops::setsockopt(impl.socket_, impl.state_,
         option.level(impl.protocol_), option.name(impl.protocol_),
@@ -176,8 +176,8 @@ public:
 
   // Set a socket option.
   template <typename Option>
-  asio::error_code get_option(const implementation_type& impl,
-      Option& option, asio::error_code& ec) const
+  ASIO_LIBNS::error_code get_option(const implementation_type& impl,
+      Option& option, ASIO_LIBNS::error_code& ec) const
   {
     std::size_t size = option.size(impl.protocol_);
     socket_ops::getsockopt(impl.socket_, impl.state_,
@@ -192,7 +192,7 @@ public:
 
   // Get the local endpoint.
   endpoint_type local_endpoint(const implementation_type& impl,
-      asio::error_code& ec) const
+      ASIO_LIBNS::error_code& ec) const
   {
     endpoint_type endpoint;
     std::size_t addr_len = endpoint.capacity();
@@ -207,7 +207,7 @@ public:
 
   // Get the remote endpoint.
   endpoint_type remote_endpoint(const implementation_type& impl,
-      asio::error_code& ec) const
+      ASIO_LIBNS::error_code& ec) const
   {
     endpoint_type endpoint;
     std::size_t addr_len = endpoint.capacity();
@@ -222,8 +222,8 @@ public:
   }
 
   // Disable sends or receives on the socket.
-  asio::error_code shutdown(base_implementation_type& impl,
-      socket_base::shutdown_type what, asio::error_code& ec)
+  ASIO_LIBNS::error_code shutdown(base_implementation_type& impl,
+      socket_base::shutdown_type what, ASIO_LIBNS::error_code& ec)
   {
     socket_ops::shutdown(impl.socket_, what, ec);
 
@@ -236,9 +236,9 @@ public:
   template <typename ConstBufferSequence>
   size_t send_to(implementation_type& impl, const ConstBufferSequence& buffers,
       const endpoint_type& destination, socket_base::message_flags flags,
-      asio::error_code& ec)
+      ASIO_LIBNS::error_code& ec)
   {
-    typedef buffer_sequence_adapter<asio::const_buffer,
+    typedef buffer_sequence_adapter<ASIO_LIBNS::const_buffer,
         ConstBufferSequence> bufs_type;
 
     size_t n;
@@ -264,7 +264,7 @@ public:
   // Wait until data can be sent without blocking.
   size_t send_to(implementation_type& impl, const null_buffers&,
       const endpoint_type&, socket_base::message_flags,
-      asio::error_code& ec)
+      ASIO_LIBNS::error_code& ec)
   {
     // Wait for socket to become ready.
     socket_ops::poll_write(impl.socket_, impl.state_, -1, ec);
@@ -285,12 +285,12 @@ public:
       asio_handler_cont_helpers::is_continuation(handler);
 
     typename associated_cancellation_slot<Handler>::type slot
-      = asio::get_associated_cancellation_slot(handler);
+      = ASIO_LIBNS::get_associated_cancellation_slot(handler);
 
     // Allocate and construct an operation to wrap the handler.
     typedef reactive_socket_sendto_op<ConstBufferSequence,
         endpoint_type, Handler, IoExecutor> op;
-    typename op::ptr p = { asio::detail::addressof(handler),
+    typename op::ptr p = { ASIO_LIBNS::detail::addressof(handler),
       op::ptr::allocate(handler), 0 };
     p.p = new (p.v) op(success_ec_, impl.socket_,
         buffers, destination, flags, handler, io_ex);
@@ -320,11 +320,11 @@ public:
       asio_handler_cont_helpers::is_continuation(handler);
 
     typename associated_cancellation_slot<Handler>::type slot
-      = asio::get_associated_cancellation_slot(handler);
+      = ASIO_LIBNS::get_associated_cancellation_slot(handler);
 
     // Allocate and construct an operation to wrap the handler.
     typedef reactive_null_buffers_op<Handler, IoExecutor> op;
-    typename op::ptr p = { asio::detail::addressof(handler),
+    typename op::ptr p = { ASIO_LIBNS::detail::addressof(handler),
       op::ptr::allocate(handler), 0 };
     p.p = new (p.v) op(success_ec_, handler, io_ex);
 
@@ -349,9 +349,9 @@ public:
   size_t receive_from(implementation_type& impl,
       const MutableBufferSequence& buffers,
       endpoint_type& sender_endpoint, socket_base::message_flags flags,
-      asio::error_code& ec)
+      ASIO_LIBNS::error_code& ec)
   {
-    typedef buffer_sequence_adapter<asio::mutable_buffer,
+    typedef buffer_sequence_adapter<ASIO_LIBNS::mutable_buffer,
         MutableBufferSequence> bufs_type;
 
     std::size_t addr_len = sender_endpoint.capacity();
@@ -379,7 +379,7 @@ public:
   // Wait until data can be received without blocking.
   size_t receive_from(implementation_type& impl, const null_buffers&,
       endpoint_type& sender_endpoint, socket_base::message_flags,
-      asio::error_code& ec)
+      ASIO_LIBNS::error_code& ec)
   {
     // Wait for socket to become ready.
     socket_ops::poll_read(impl.socket_, impl.state_, -1, ec);
@@ -405,12 +405,12 @@ public:
       asio_handler_cont_helpers::is_continuation(handler);
 
     typename associated_cancellation_slot<Handler>::type slot
-      = asio::get_associated_cancellation_slot(handler);
+      = ASIO_LIBNS::get_associated_cancellation_slot(handler);
 
     // Allocate and construct an operation to wrap the handler.
     typedef reactive_socket_recvfrom_op<MutableBufferSequence,
         endpoint_type, Handler, IoExecutor> op;
-    typename op::ptr p = { asio::detail::addressof(handler),
+    typename op::ptr p = { ASIO_LIBNS::detail::addressof(handler),
       op::ptr::allocate(handler), 0 };
     int protocol = impl.protocol_.type();
     p.p = new (p.v) op(success_ec_, impl.socket_, protocol,
@@ -444,11 +444,11 @@ public:
       asio_handler_cont_helpers::is_continuation(handler);
 
     typename associated_cancellation_slot<Handler>::type slot
-      = asio::get_associated_cancellation_slot(handler);
+      = ASIO_LIBNS::get_associated_cancellation_slot(handler);
 
     // Allocate and construct an operation to wrap the handler.
     typedef reactive_null_buffers_op<Handler, IoExecutor> op;
-    typename op::ptr p = { asio::detail::addressof(handler),
+    typename op::ptr p = { ASIO_LIBNS::detail::addressof(handler),
       op::ptr::allocate(handler), 0 };
     p.p = new (p.v) op(success_ec_, handler, io_ex);
 
@@ -475,13 +475,13 @@ public:
 
   // Accept a new connection.
   template <typename Socket>
-  asio::error_code accept(implementation_type& impl,
-      Socket& peer, endpoint_type* peer_endpoint, asio::error_code& ec)
+  ASIO_LIBNS::error_code accept(implementation_type& impl,
+      Socket& peer, endpoint_type* peer_endpoint, ASIO_LIBNS::error_code& ec)
   {
     // We cannot accept a socket that is already open.
     if (peer.is_open())
     {
-      ec = asio::error::already_open;
+      ec = ASIO_LIBNS::error::already_open;
       ASIO_ERROR_LOCATION(ec);
       return ec;
     }
@@ -515,11 +515,11 @@ public:
       asio_handler_cont_helpers::is_continuation(handler);
 
     typename associated_cancellation_slot<Handler>::type slot
-      = asio::get_associated_cancellation_slot(handler);
+      = ASIO_LIBNS::get_associated_cancellation_slot(handler);
 
     // Allocate and construct an operation to wrap the handler.
     typedef reactive_socket_accept_op<Socket, Protocol, Handler, IoExecutor> op;
-    typename op::ptr p = { asio::detail::addressof(handler),
+    typename op::ptr p = { ASIO_LIBNS::detail::addressof(handler),
       op::ptr::allocate(handler), 0 };
     p.p = new (p.v) op(success_ec_, impl.socket_, impl.state_,
         peer, impl.protocol_, peer_endpoint, handler, io_ex);
@@ -551,12 +551,12 @@ public:
       asio_handler_cont_helpers::is_continuation(handler);
 
     typename associated_cancellation_slot<Handler>::type slot
-      = asio::get_associated_cancellation_slot(handler);
+      = ASIO_LIBNS::get_associated_cancellation_slot(handler);
 
     // Allocate and construct an operation to wrap the handler.
     typedef reactive_socket_move_accept_op<Protocol,
         PeerIoExecutor, Handler, IoExecutor> op;
-    typename op::ptr p = { asio::detail::addressof(handler),
+    typename op::ptr p = { ASIO_LIBNS::detail::addressof(handler),
       op::ptr::allocate(handler), 0 };
     p.p = new (p.v) op(success_ec_, peer_io_ex, impl.socket_,
         impl.state_, impl.protocol_, peer_endpoint, handler, io_ex);
@@ -578,8 +578,8 @@ public:
 #endif // defined(ASIO_HAS_MOVE)
 
   // Connect the socket to the specified endpoint.
-  asio::error_code connect(implementation_type& impl,
-      const endpoint_type& peer_endpoint, asio::error_code& ec)
+  ASIO_LIBNS::error_code connect(implementation_type& impl,
+      const endpoint_type& peer_endpoint, ASIO_LIBNS::error_code& ec)
   {
     socket_ops::sync_connect(impl.socket_,
         peer_endpoint.data(), peer_endpoint.size(), ec);
@@ -597,11 +597,11 @@ public:
       asio_handler_cont_helpers::is_continuation(handler);
 
     typename associated_cancellation_slot<Handler>::type slot
-      = asio::get_associated_cancellation_slot(handler);
+      = ASIO_LIBNS::get_associated_cancellation_slot(handler);
 
     // Allocate and construct an operation to wrap the handler.
     typedef reactive_socket_connect_op<Handler, IoExecutor> op;
-    typename op::ptr p = { asio::detail::addressof(handler),
+    typename op::ptr p = { ASIO_LIBNS::detail::addressof(handler),
       op::ptr::allocate(handler), 0 };
     p.p = new (p.v) op(success_ec_, impl.socket_, handler, io_ex);
 

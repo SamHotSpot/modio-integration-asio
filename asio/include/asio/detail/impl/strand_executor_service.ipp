@@ -20,7 +20,8 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+//namespace ASIO_LIBNS {
+namespace ASIO_LIBNS {
 namespace detail {
 
 strand_executor_service::strand_executor_service(execution_context& ctx)
@@ -35,7 +36,7 @@ void strand_executor_service::shutdown()
 {
   op_queue<scheduler_operation> ops;
 
-  asio::detail::mutex::scoped_lock lock(mutex_);
+  ASIO_LIBNS::detail::mutex::scoped_lock lock(mutex_);
 
   strand_impl* impl = impl_list_;
   while (impl)
@@ -56,7 +57,7 @@ strand_executor_service::create_implementation()
   new_impl->locked_ = false;
   new_impl->shutdown_ = false;
 
-  asio::detail::mutex::scoped_lock lock(mutex_);
+  ASIO_LIBNS::detail::mutex::scoped_lock lock(mutex_);
 
   // Select a mutex from the pool of shared mutexes.
   std::size_t salt = salt_++;
@@ -81,7 +82,7 @@ strand_executor_service::create_implementation()
 
 strand_executor_service::strand_impl::~strand_impl()
 {
-  asio::detail::mutex::scoped_lock lock(service_->mutex_);
+  ASIO_LIBNS::detail::mutex::scoped_lock lock(service_->mutex_);
 
   // Remove implementation from linked list of all implementations.
   if (service_->impl_list_ == this)
@@ -142,7 +143,7 @@ void strand_executor_service::run_ready_handlers(implementation_type& impl)
 
   // Run all ready handlers. No lock is required since the ready queue is
   // accessed only within the strand.
-  asio::error_code ec;
+  ASIO_LIBNS::error_code ec;
   while (scheduler_operation* o = impl->ready_queue_.front())
   {
     impl->ready_queue_.pop();

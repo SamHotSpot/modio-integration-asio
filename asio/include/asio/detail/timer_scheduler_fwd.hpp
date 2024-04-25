@@ -17,7 +17,7 @@
 
 #include "asio/detail/config.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 #if defined(ASIO_WINDOWS_RUNTIME)

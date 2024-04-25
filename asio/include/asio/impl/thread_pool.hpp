@@ -25,7 +25,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 inline thread_pool::executor_type
 thread_pool::get_executor() ASIO_NOEXCEPT

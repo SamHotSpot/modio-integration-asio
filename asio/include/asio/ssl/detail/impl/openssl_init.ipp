@@ -26,7 +26,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace ssl {
 namespace detail {
 
@@ -42,7 +42,7 @@ public:
 
     mutexes_.resize(::CRYPTO_num_locks());
     for (size_t i = 0; i < mutexes_.size(); ++i)
-      mutexes_[i].reset(new asio::detail::mutex);
+      mutexes_[i].reset(new ASIO_LIBNS::detail::mutex);
     ::CRYPTO_set_locking_callback(&do_init::openssl_locking_func);
 #endif // (OPENSSL_VERSION_NUMBER < 0x10100000L)
 #if (OPENSSL_VERSION_NUMBER < 0x10000000L)
@@ -133,8 +133,8 @@ private:
   }
 
   // Mutexes to be used in locking callbacks.
-  std::vector<asio::detail::shared_ptr<
-        asio::detail::mutex> > mutexes_;
+  std::vector<ASIO_LIBNS::detail::shared_ptr<
+        ASIO_LIBNS::detail::mutex> > mutexes_;
 #endif // (OPENSSL_VERSION_NUMBER < 0x10100000L)
 
 #if !defined(SSL_OP_NO_COMPRESSION) \
@@ -144,10 +144,10 @@ private:
        // && (OPENSSL_VERSION_NUMBER >= 0x00908000L)
 };
 
-asio::detail::shared_ptr<openssl_init_base::do_init>
+ASIO_LIBNS::detail::shared_ptr<openssl_init_base::do_init>
 openssl_init_base::instance()
 {
-  static asio::detail::shared_ptr<do_init> init(new do_init);
+  static ASIO_LIBNS::detail::shared_ptr<do_init> init(new do_init);
   return init;
 }
 

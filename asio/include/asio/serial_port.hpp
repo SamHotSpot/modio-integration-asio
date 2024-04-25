@@ -23,7 +23,7 @@
 
 #include "asio/basic_serial_port.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// Typedef for the typical usage of a serial port.
 typedef basic_serial_port<> serial_port;

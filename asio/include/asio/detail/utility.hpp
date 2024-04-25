@@ -19,7 +19,7 @@
 
 # include <utility>
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 #if defined(ASIO_HAS_STD_INDEX_SEQUENCE)

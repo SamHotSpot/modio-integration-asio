@@ -32,7 +32,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// Automatically resizable buffer class based on std::streambuf.
 /**
@@ -75,7 +75,7 @@ namespace asio {
  * @par Examples
  * Writing directly from an streambuf to a socket:
  * @code
- * asio::streambuf b;
+ * ASIO_LIBNS::streambuf b;
  * std::ostream os(&b);
  * os << "Hello, World!\n";
  *
@@ -87,10 +87,10 @@ namespace asio {
  *
  * Reading from a socket directly into a streambuf:
  * @code
- * asio::streambuf b;
+ * ASIO_LIBNS::streambuf b;
  *
  * // reserve 512 bytes in output sequence
- * asio::streambuf::mutable_buffers_type bufs = b.prepare(512);
+ * ASIO_LIBNS::streambuf::mutable_buffers_type bufs = b.prepare(512);
  *
  * size_t n = sock.receive(bufs);
  *
@@ -191,7 +191,7 @@ public:
    */
   const_buffers_type data() const ASIO_NOEXCEPT
   {
-    return asio::buffer(asio::const_buffer(gptr(),
+    return ASIO_LIBNS::buffer(ASIO_LIBNS::const_buffer(gptr(),
           (pptr() - gptr()) * sizeof(char_type)));
   }
 
@@ -214,7 +214,7 @@ public:
   mutable_buffers_type prepare(std::size_t n)
   {
     reserve(n);
-    return asio::buffer(asio::mutable_buffer(
+    return ASIO_LIBNS::buffer(ASIO_LIBNS::mutable_buffer(
           pptr(), n * sizeof(char_type)));
   }
 
@@ -335,8 +335,8 @@ protected:
       }
       else
       {
-        std::length_error ex("asio::streambuf too long");
-        asio::detail::throw_exception(ex);
+        std::length_error ex("ASIO_LIBNS::streambuf too long");
+        ASIO_LIBNS::detail::throw_exception(ex);
       }
     }
 

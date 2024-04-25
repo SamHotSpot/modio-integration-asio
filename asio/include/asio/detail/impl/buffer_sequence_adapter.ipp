@@ -26,21 +26,21 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 class winrt_buffer_impl : public winrt::implements < winrt_buffer_impl,
 		winrt::Windows::Storage::Streams::IBuffer, Windows::Storage::Streams::IBufferByteAccess>
 {
 public:
-  explicit winrt_buffer_impl(const asio::const_buffer& b)
+  explicit winrt_buffer_impl(const ASIO_LIBNS::const_buffer& b)
   {
     bytes_ = const_cast<byte*>(static_cast<const byte*>(b.data()));
     length_ = b.size();
     capacity_ = b.size();
   }
 
-  explicit winrt_buffer_impl(const asio::mutable_buffer& b)
+  explicit winrt_buffer_impl(const ASIO_LIBNS::mutable_buffer& b)
   {
     bytes_ = static_cast<byte*>(b.data());
     length_ = 0;
@@ -83,14 +83,14 @@ private:
 
 void buffer_sequence_adapter_base::init_native_buffer(
     buffer_sequence_adapter_base::native_buffer_type& buf,
-    const asio::mutable_buffer& buffer)
+    const ASIO_LIBNS::mutable_buffer& buffer)
 {
 	buf = winrt::make<winrt_buffer_impl>(buffer).as<buffer_sequence_adapter_base::native_buffer_type>();
 }
 
 void buffer_sequence_adapter_base::init_native_buffer(
     buffer_sequence_adapter_base::native_buffer_type& buf,
-    const asio::const_buffer& buffer)
+    const ASIO_LIBNS::const_buffer& buffer)
 {
 	buf = winrt::make<winrt_buffer_impl>(buffer).as<buffer_sequence_adapter_base::native_buffer_type>();
 }

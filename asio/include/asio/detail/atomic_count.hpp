@@ -23,7 +23,7 @@
 # include <boost/detail/atomic_count.hpp>
 #endif // defined(ASIO_HAS_STD_ATOMIC)
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 #if defined(ASIO_HAS_STD_ATOMIC)

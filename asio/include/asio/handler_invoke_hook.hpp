@@ -19,9 +19,9 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
-/** @defgroup asio_handler_invoke asio::asio_handler_invoke
+/** @defgroup asio_handler_invoke ASIO_LIBNS::asio_handler_invoke
  *
  * @brief (Deprecated: Use the associated_executor trait.) Default invoke
  * function for handlers.

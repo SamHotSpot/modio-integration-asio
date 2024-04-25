@@ -32,7 +32,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 template <typename Executor, typename = void>
@@ -46,7 +46,7 @@ public:
     >::type executor_type;
 
   composed_work_guard(const Executor& ex)
-    : executor_(asio::prefer(ex, execution::outstanding_work.tracked))
+    : executor_(ASIO_LIBNS::prefer(ex, execution::outstanding_work.tracked))
   {
   }
 
@@ -619,12 +619,12 @@ struct associator<Associator,
  * @code struct async_echo_implementation
  * {
  *   tcp::socket& socket_;
- *   asio::mutable_buffer buffer_;
+ *   ASIO_LIBNS::mutable_buffer buffer_;
  *   enum { starting, reading, writing } state_;
  *
  *   template <typename Self>
  *   void operator()(Self& self,
- *       asio::error_code error = {},
+ *       ASIO_LIBNS::error_code error = {},
  *       std::size_t n = 0)
  *   {
  *     switch (state_)
@@ -642,8 +642,8 @@ struct associator<Associator,
  *       else
  *       {
  *         state_ = writing;
- *         asio::async_write(socket_, buffer_,
- *             asio::transfer_exactly(n),
+ *         ASIO_LIBNS::async_write(socket_, buffer_,
+ *             ASIO_LIBNS::transfer_exactly(n),
  *             std::move(self));
  *       }
  *       break;
@@ -656,16 +656,16 @@ struct associator<Associator,
  *
  * template <typename CompletionToken>
  * auto async_echo(tcp::socket& socket,
- *     asio::mutable_buffer buffer,
+ *     ASIO_LIBNS::mutable_buffer buffer,
  *     CompletionToken&& token) ->
  *   decltype(
- *     asio::async_compose<CompletionToken,
- *       void(asio::error_code, std::size_t)>(
+ *     ASIO_LIBNS::async_compose<CompletionToken,
+ *       void(ASIO_LIBNS::error_code, std::size_t)>(
  *         std::declval<async_echo_implementation>(),
  *         token, socket))
  * {
- *   return asio::async_compose<CompletionToken,
- *     void(asio::error_code, std::size_t)>(
+ *   return ASIO_LIBNS::async_compose<CompletionToken,
+ *     void(ASIO_LIBNS::error_code, std::size_t)>(
  *       async_echo_implementation{socket, buffer,
  *         async_echo_implementation::starting},
  *       token, socket);

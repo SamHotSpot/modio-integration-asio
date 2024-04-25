@@ -24,7 +24,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 template <typename Stream>
 std::size_t buffered_write_stream<Stream>::flush()
@@ -36,7 +36,7 @@ std::size_t buffered_write_stream<Stream>::flush()
 }
 
 template <typename Stream>
-std::size_t buffered_write_stream<Stream>::flush(asio::error_code& ec)
+std::size_t buffered_write_stream<Stream>::flush(ASIO_LIBNS::error_code& ec)
 {
   std::size_t bytes_written = write(next_layer_,
       buffer(storage_.data(), storage_.size()),
@@ -72,7 +72,7 @@ namespace detail
     }
 #endif // defined(ASIO_HAS_MOVE)
 
-    void operator()(const asio::error_code& ec,
+    void operator()(const ASIO_LIBNS::error_code& ec,
         const std::size_t bytes_written)
     {
       storage_.consume(bytes_written);
@@ -200,20 +200,20 @@ struct associator<Associator,
 
 template <typename Stream>
 template <
-    ASIO_COMPLETION_TOKEN_FOR(void (asio::error_code,
+    ASIO_COMPLETION_TOKEN_FOR(void (ASIO_LIBNS::error_code,
       std::size_t)) WriteHandler>
 ASIO_INITFN_AUTO_RESULT_TYPE_PREFIX(WriteHandler,
-    void (asio::error_code, std::size_t))
+    void (ASIO_LIBNS::error_code, std::size_t))
 buffered_write_stream<Stream>::async_flush(
     ASIO_MOVE_ARG(WriteHandler) handler)
   ASIO_INITFN_AUTO_RESULT_TYPE_SUFFIX((
     async_initiate<WriteHandler,
-      void (asio::error_code, std::size_t)>(
+      void (ASIO_LIBNS::error_code, std::size_t)>(
         declval<detail::initiate_async_buffered_flush<Stream> >(),
         handler, declval<detail::buffered_stream_storage*>())))
 {
   return async_initiate<WriteHandler,
-    void (asio::error_code, std::size_t)>(
+    void (ASIO_LIBNS::error_code, std::size_t)>(
       detail::initiate_async_buffered_flush<Stream>(next_layer_),
       handler, &storage_);
 }
@@ -223,7 +223,7 @@ template <typename ConstBufferSequence>
 std::size_t buffered_write_stream<Stream>::write_some(
     const ConstBufferSequence& buffers)
 {
-  using asio::buffer_size;
+  using ASIO_LIBNS::buffer_size;
   if (buffer_size(buffers) == 0)
     return 0;
 
@@ -236,11 +236,11 @@ std::size_t buffered_write_stream<Stream>::write_some(
 template <typename Stream>
 template <typename ConstBufferSequence>
 std::size_t buffered_write_stream<Stream>::write_some(
-    const ConstBufferSequence& buffers, asio::error_code& ec)
+    const ConstBufferSequence& buffers, ASIO_LIBNS::error_code& ec)
 {
-  ec = asio::error_code();
+  ec = ASIO_LIBNS::error_code();
 
-  using asio::buffer_size;
+  using ASIO_LIBNS::buffer_size;
   if (buffer_size(buffers) == 0)
     return 0;
 
@@ -280,7 +280,7 @@ namespace detail
       }
 #endif // defined(ASIO_HAS_MOVE)
 
-    void operator()(const asio::error_code& ec, std::size_t)
+    void operator()(const ASIO_LIBNS::error_code& ec, std::size_t)
     {
       if (ec)
       {
@@ -289,14 +289,14 @@ namespace detail
       }
       else
       {
-        using asio::buffer_size;
+        using ASIO_LIBNS::buffer_size;
         std::size_t orig_size = storage_.size();
         std::size_t space_avail = storage_.capacity() - orig_size;
         std::size_t bytes_avail = buffer_size(buffers_);
         std::size_t length = bytes_avail < space_avail
           ? bytes_avail : space_avail;
         storage_.resize(orig_size + length);
-        const std::size_t bytes_copied = asio::buffer_copy(
+        const std::size_t bytes_copied = ASIO_LIBNS::buffer_copy(
             storage_.data() + orig_size, buffers_, length);
         ASIO_MOVE_OR_LVALUE(WriteHandler)(handler_)(ec, bytes_copied);
       }
@@ -400,7 +400,7 @@ namespace detail
       // does not meet the documented type requirements for a WriteHandler.
       ASIO_WRITE_HANDLER_CHECK(WriteHandler, handler) type_check;
 
-      using asio::buffer_size;
+      using ASIO_LIBNS::buffer_size;
       non_const_lvalue<WriteHandler> handler2(handler);
       if (buffer_size(buffers) == 0 || storage->size() < storage->capacity())
       {
@@ -447,21 +447,21 @@ struct associator<Associator,
 
 template <typename Stream>
 template <typename ConstBufferSequence,
-    ASIO_COMPLETION_TOKEN_FOR(void (asio::error_code,
+    ASIO_COMPLETION_TOKEN_FOR(void (ASIO_LIBNS::error_code,
       std::size_t)) WriteHandler>
 ASIO_INITFN_AUTO_RESULT_TYPE_PREFIX(WriteHandler,
-    void (asio::error_code, std::size_t))
+    void (ASIO_LIBNS::error_code, std::size_t))
 buffered_write_stream<Stream>::async_write_some(
     const ConstBufferSequence& buffers,
     ASIO_MOVE_ARG(WriteHandler) handler)
   ASIO_INITFN_AUTO_RESULT_TYPE_SUFFIX((
     async_initiate<WriteHandler,
-      void (asio::error_code, std::size_t)>(
+      void (ASIO_LIBNS::error_code, std::size_t)>(
         declval<detail::initiate_async_buffered_write_some<Stream> >(),
         handler, declval<detail::buffered_stream_storage*>(), buffers)))
 {
   return async_initiate<WriteHandler,
-    void (asio::error_code, std::size_t)>(
+    void (ASIO_LIBNS::error_code, std::size_t)>(
       detail::initiate_async_buffered_write_some<Stream>(next_layer_),
       handler, &storage_, buffers);
 }
@@ -471,13 +471,13 @@ template <typename ConstBufferSequence>
 std::size_t buffered_write_stream<Stream>::copy(
     const ConstBufferSequence& buffers)
 {
-  using asio::buffer_size;
+  using ASIO_LIBNS::buffer_size;
   std::size_t orig_size = storage_.size();
   std::size_t space_avail = storage_.capacity() - orig_size;
   std::size_t bytes_avail = buffer_size(buffers);
   std::size_t length = bytes_avail < space_avail ? bytes_avail : space_avail;
   storage_.resize(orig_size + length);
-  return asio::buffer_copy(
+  return ASIO_LIBNS::buffer_copy(
       storage_.data() + orig_size, buffers, length);
 }
 

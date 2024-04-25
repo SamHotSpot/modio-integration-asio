@@ -20,7 +20,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace ip {
 
 /// The resolver_base class is used as a base for the basic_resolver class

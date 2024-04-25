@@ -27,7 +27,7 @@
 # include "asio/detail/pipe_select_interrupter.hpp"
 #endif
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace detail {
 
 #if defined(ASIO_WINDOWS) || defined(__CYGWIN__) || defined(__SYMBIAN32__) || defined(ASIO_USE_SOCKET_SELECT)

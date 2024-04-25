@@ -25,7 +25,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 /// A @ref completion_token adapter used to specify that the completion handler
 /// arguments should be combined into a single tuple argument.

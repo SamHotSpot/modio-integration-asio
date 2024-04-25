@@ -19,7 +19,7 @@
 #include <exception>
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 namespace execution {
 
 /// Exception thrown when trying to access an empty polymorphic executor.

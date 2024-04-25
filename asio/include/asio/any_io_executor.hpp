@@ -25,7 +25,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 #if defined(ASIO_USE_TS_EXECUTOR_AS_DEFAULT)
 
@@ -167,11 +167,11 @@ public:
   /// Obtain a polymorphic wrapper with the specified property.
   /**
    * Do not call this function directly. It is intended for use with the
-   * asio::require and asio::prefer customisation points.
+   * ASIO_LIBNS::require and ASIO_LIBNS::prefer customisation points.
    *
    * For example:
    * @code any_io_executor ex = ...;
-   * auto ex2 = asio::require(ex, execution::blocking.possibly); @endcode
+   * auto ex2 = ASIO_LIBNS::require(ex, execution::blocking.possibly); @endcode
    */
   template <typename Property>
   any_io_executor require(const Property& p,
@@ -185,11 +185,11 @@ public:
   /// Obtain a polymorphic wrapper with the specified property.
   /**
    * Do not call this function directly. It is intended for use with the
-   * asio::prefer customisation point.
+   * ASIO_LIBNS::prefer customisation point.
    *
    * For example:
    * @code any_io_executor ex = ...;
-   * auto ex2 = asio::prefer(ex, execution::blocking.possibly); @endcode
+   * auto ex2 = ASIO_LIBNS::prefer(ex, execution::blocking.possibly); @endcode
    */
   template <typename Property>
   any_io_executor prefer(const Property& p,

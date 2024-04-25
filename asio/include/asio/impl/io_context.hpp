@@ -26,7 +26,7 @@
 
 #include "asio/detail/push_options.hpp"
 
-namespace asio {
+namespace ASIO_LIBNS {
 
 #if !defined(GENERATING_DOCUMENTATION)
 
@@ -93,11 +93,11 @@ std::size_t io_context::run_one_until(
     if (rel_time > chrono::seconds(1))
       rel_time = chrono::seconds(1);
 
-    asio::error_code ec;
+    ASIO_LIBNS::error_code ec;
     std::size_t s = impl_.wait_one(
         static_cast<long>(chrono::duration_cast<
           chrono::microseconds>(rel_time).count()), ec);
-    asio::detail::throw_error(ec);
+    ASIO_LIBNS::detail::throw_error(ec);
 
     if (s || impl_.stopped())
       return s;
@@ -415,7 +415,7 @@ void io_context::basic_executor_type<Allocator, Bits>::defer(
 #endif // !defined(ASIO_NO_TS_EXECUTORS)
 
 #if !defined(ASIO_NO_DEPRECATED)
-inline io_context::work::work(asio::io_context& io_context)
+inline io_context::work::work(ASIO_LIBNS::io_context& io_context)
   : io_context_impl_(io_context.impl_)
 {
   io_context_impl_.work_started();
@@ -432,15 +432,15 @@ inline io_context::work::~work()
   io_context_impl_.work_finished();
 }
 
-inline asio::io_context& io_context::work::get_io_context()
+inline ASIO_LIBNS::io_context& io_context::work::get_io_context()
 {
-  return static_cast<asio::io_context&>(io_context_impl_.context());
+  return static_cast<ASIO_LIBNS::io_context&>(io_context_impl_.context());
 }
 #endif // !defined(ASIO_NO_DEPRECATED)
 
-inline asio::io_context& io_context::service::get_io_context()
+inline ASIO_LIBNS::io_context& io_context::service::get_io_context()
 {
-  return static_cast<asio::io_context&>(context());
+  return static_cast<ASIO_LIBNS::io_context&>(context());
 }
 
 } // namespace asio
